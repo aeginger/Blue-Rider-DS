@@ -1,0 +1,440 @@
+/**
+ * Blue Rider Design System - CaseStudyCard Component
+ * A diptych-style component for showcasing case studies and projects
+ */
+
+/* ==========================================================================
+   CSS Custom Properties for CaseStudyCard
+   ========================================================================== */
+
+:root {
+  /* Component-specific tokens */
+  --br-case-study-gap: 48px;
+  --br-case-study-gap-sm: 32px;
+  --br-case-study-image-radius: var(--br-scale-300, 12px);
+  --br-case-study-transition: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   Base CaseStudyCard Styles
+   ========================================================================== */
+
+.br-case-study-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--br-case-study-gap);
+  align-items: center;
+  width: 100%;
+}
+
+/* Layout Variants */
+.br-case-study-card--text-left {
+  grid-template-areas: "content media";
+}
+
+.br-case-study-card--text-right {
+  grid-template-areas: "media content";
+}
+
+/* Gap Variants */
+.br-case-study-card--gap-sm {
+  gap: var(--br-case-study-gap-sm);
+}
+
+.br-case-study-card--gap-lg {
+  gap: 64px;
+}
+
+/* ==========================================================================
+   Content Section
+   ========================================================================== */
+
+.br-case-study-card__content {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  gap: var(--br-scale-500);
+}
+
+/* Overline / Category Label */
+.br-case-study-card__overline {
+  font-family: var(--br-font-family-primary);
+  font-size: 12px;
+  font-weight: var(--br-font-weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--br-color-primary-default);
+  margin: 0;
+}
+
+/* Headline */
+.br-case-study-card__headline {
+  font-family: var(--br-font-family-primary);
+  font-size: 32px;
+  font-weight: var(--br-font-weight-bold);
+  line-height: 1.25;
+  color: var(--br-color-neutrals-100);
+  margin: 0;
+}
+
+/* Description */
+.br-case-study-card__description {
+  font-family: var(--br-font-family-primary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--br-color-neutrals-300);
+  margin: 0;
+}
+
+.br-case-study-card__description p {
+  margin: 0;
+}
+
+/* Tags */
+.br-case-study-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--br-scale-200);
+  margin-top: var(--br-scale-100);
+}
+
+.br-case-study-card__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--br-scale-100) var(--br-scale-300);
+  font-family: var(--br-font-family-primary);
+  font-size: 12px;
+  font-weight: var(--br-font-weight-medium);
+  color: var(--br-color-primary-200);
+  background-color: var(--br-color-primary-900);
+  border-radius: var(--br-radius-round);
+  border: 1px solid var(--br-color-primary-800);
+}
+
+/* CTA Section */
+.br-case-study-card__cta {
+  margin-top: var(--br-scale-200);
+}
+
+/* ==========================================================================
+   Media Section
+   ========================================================================== */
+
+.br-case-study-card__media {
+  grid-area: media;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--br-case-study-image-radius);
+  background-color: var(--br-color-neutrals-800);
+}
+
+/* Single Image */
+.br-case-study-card__image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--br-case-study-image-radius);
+}
+
+.br-case-study-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--br-case-study-transition);
+}
+
+/* Hover effect on image */
+.br-case-study-card:hover .br-case-study-card__image {
+  transform: scale(1.03);
+}
+
+/* Image overlay for hover state */
+.br-case-study-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(68, 202, 182, 0) 0%,
+    rgba(68, 202, 182, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--br-case-study-transition);
+  pointer-events: none;
+}
+
+.br-case-study-card:hover .br-case-study-card__image-overlay {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Slideshow / Carousel
+   ========================================================================== */
+
+.br-case-study-card__slideshow {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--br-case-study-image-radius);
+}
+
+.br-case-study-card__slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.br-case-study-card__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+.br-case-study-card__slide--active {
+  opacity: 1;
+}
+
+.br-case-study-card__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Slideshow Controls */
+.br-case-study-card__slideshow-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--br-scale-400);
+  background: linear-gradient(
+    to top,
+    rgba(25, 29, 28, 0.8) 0%,
+    rgba(25, 29, 28, 0) 100%
+  );
+  z-index: 10;
+}
+
+/* Pagination Dots */
+.br-case-study-card__pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--br-scale-200);
+}
+
+.br-case-study-card__pagination-dot {
+  width: 32px;
+  height: 3px;
+  background-color: var(--br-color-neutrals-600);
+  border-radius: 2px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color var(--br-transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.br-case-study-card__pagination-dot::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background-color: var(--br-color-primary-default);
+  transition: width 0ms linear;
+}
+
+.br-case-study-card__pagination-dot--active::after {
+  width: 100%;
+  transition: width 5000ms linear;
+}
+
+.br-case-study-card__pagination-dot--viewed {
+  background-color: var(--br-color-neutrals-400);
+}
+
+.br-case-study-card__pagination-dot:hover {
+  background-color: var(--br-color-neutrals-400);
+}
+
+/* Play/Pause Button */
+.br-case-study-card__play-pause {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid var(--br-color-neutrals-600);
+  border-radius: 50%;
+  color: var(--br-color-neutrals-200);
+  cursor: pointer;
+  transition: 
+    border-color var(--br-transition-fast),
+    color var(--br-transition-fast);
+}
+
+.br-case-study-card__play-pause:hover {
+  border-color: var(--br-color-primary-default);
+  color: var(--br-color-primary-default);
+}
+
+.br-case-study-card__play-pause svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ==========================================================================
+   Link Wrapper (when entire card is clickable)
+   ========================================================================== */
+
+.br-case-study-card--clickable {
+  cursor: pointer;
+}
+
+.br-case-study-card__link {
+  text-decoration: none;
+  color: inherit;
+  display: contents;
+}
+
+/* ==========================================================================
+   Light Theme Overrides
+   ========================================================================== */
+
+[data-theme="light"] .br-case-study-card__headline,
+.br-theme-light .br-case-study-card__headline {
+  color: var(--br-color-neutrals-900);
+}
+
+[data-theme="light"] .br-case-study-card__description,
+.br-theme-light .br-case-study-card__description {
+  color: var(--br-color-neutrals-600);
+}
+
+[data-theme="light"] .br-case-study-card__tag,
+.br-theme-light .br-case-study-card__tag {
+  color: var(--br-color-primary-800);
+  background-color: var(--br-color-primary-100);
+  border-color: var(--br-color-primary-200);
+}
+
+[data-theme="light"] .br-case-study-card__media,
+.br-theme-light .br-case-study-card__media {
+  background-color: var(--br-color-neutrals-100);
+}
+
+[data-theme="light"] .br-case-study-card__slideshow-controls,
+.br-theme-light .br-case-study-card__slideshow-controls {
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+[data-theme="light"] .br-case-study-card__pagination-dot,
+.br-theme-light .br-case-study-card__pagination-dot {
+  background-color: var(--br-color-neutrals-300);
+}
+
+[data-theme="light"] .br-case-study-card__pagination-dot--viewed,
+.br-theme-light .br-case-study-card__pagination-dot--viewed {
+  background-color: var(--br-color-neutrals-400);
+}
+
+[data-theme="light"] .br-case-study-card__play-pause,
+.br-theme-light .br-case-study-card__play-pause {
+  color: var(--br-color-neutrals-700);
+  border-color: var(--br-color-neutrals-300);
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .br-case-study-card {
+    gap: var(--br-case-study-gap-sm);
+  }
+
+  .br-case-study-card__headline {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .br-case-study-card {
+    grid-template-columns: 1fr;
+    gap: var(--br-scale-600);
+  }
+
+  .br-case-study-card--text-left,
+  .br-case-study-card--text-right {
+    grid-template-areas: 
+      "media"
+      "content";
+  }
+
+  .br-case-study-card--text-left.br-case-study-card--mobile-content-first,
+  .br-case-study-card--text-right.br-case-study-card--mobile-content-first {
+    grid-template-areas: 
+      "content"
+      "media";
+  }
+
+  .br-case-study-card__headline {
+    font-size: 24px;
+  }
+
+  .br-case-study-card__image-wrapper,
+  .br-case-study-card__slideshow {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ==========================================================================
+   Animation & Motion
+   ========================================================================== */
+
+@keyframes br-slide-progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.br-case-study-card__pagination-dot--animating::after {
+  animation: br-slide-progress 5s linear forwards;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .br-case-study-card__image {
+    transition: none;
+  }
+
+  .br-case-study-card__slide {
+    transition: none;
+  }
+
+  .br-case-study-card__image-overlay {
+    transition: none;
+  }
+
+  .br-case-study-card__pagination-dot::after {
+    transition: none;
+    animation: none;
+  }
+}
+

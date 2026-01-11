@@ -1,0 +1,210 @@
+/**
+ * Button Demo Styles
+ * Styles for the button component showcase page
+ */
+
+.button-demo {
+  min-height: 100vh;
+  padding: 40px;
+  background-color: var(--br-color-base-black);
+  color: var(--br-color-neutrals-100);
+  font-family: var(--br-font-family-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button-demo[data-theme="light"],
+.button-demo.br-theme-light {
+  background-color: var(--br-color-base-white);
+  color: var(--br-color-neutrals-800);
+}
+
+/* Header */
+.button-demo__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.button-demo__header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: var(--br-color-primary-default);
+}
+
+.button-demo__header h2 {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 24px 0;
+  opacity: 0.8;
+}
+
+.theme-toggle {
+  padding: 8px 16px;
+  background: var(--br-color-neutrals-700);
+  border: 1px solid var(--br-color-neutrals-600);
+  border-radius: 6px;
+  color: var(--br-color-neutrals-100);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--br-color-neutrals-600);
+}
+
+[data-theme="light"] .theme-toggle,
+.br-theme-light .theme-toggle {
+  background: var(--br-color-neutrals-100);
+  border-color: var(--br-color-neutrals-300);
+  color: var(--br-color-neutrals-800);
+}
+
+[data-theme="light"] .theme-toggle:hover,
+.br-theme-light .theme-toggle:hover {
+  background: var(--br-color-neutrals-200);
+}
+
+/* Sections */
+.button-demo__section {
+  margin-bottom: 48px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button-demo__section h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: var(--br-color-primary-default);
+}
+
+.button-demo__description {
+  margin: 0 0 24px 0;
+  opacity: 0.7;
+  font-size: 14px;
+}
+
+/* Tables */
+.button-demo__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+}
+
+.button-demo__table th,
+.button-demo__table td {
+  padding: 16px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.button-demo__table th {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.6;
+  padding-bottom: 8px;
+}
+
+.button-demo__variant-label {
+  text-align: left !important;
+  font-weight: 600;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+/* Force states for demo */
+.force-hover {
+  background-color: var(--br-color-primary-400) !important;
+  border-color: var(--br-color-primary-400) !important;
+}
+
+.br-button--secondary.force-hover {
+  background-color: var(--br-color-primary-900) !important;
+  border-color: var(--br-color-primary-800) !important;
+}
+
+.br-button--flat.force-hover {
+  background-color: transparent !important;
+  border-color: var(--br-color-primary-800) !important;
+}
+
+.force-active {
+  background-color: var(--br-color-primary-600) !important;
+  border-color: var(--br-color-primary-600) !important;
+}
+
+.br-button--secondary.force-active {
+  background-color: var(--br-color-primary-900) !important;
+  border-color: var(--br-color-primary-800) !important;
+  color: var(--br-color-primary-200) !important;
+}
+
+.br-button--flat.force-active {
+  background-color: transparent !important;
+  border-color: var(--br-color-primary-800) !important;
+  color: var(--br-color-primary-200) !important;
+}
+
+.force-focus {
+  box-shadow:
+    0 0 0 2px var(--br-color-base-black),
+    0 0 0 4px var(--br-color-primary-default) !important;
+}
+
+[data-theme="light"] .force-focus,
+.br-theme-light .force-focus {
+  box-shadow:
+    0 0 0 2px var(--br-color-base-white),
+    0 0 0 4px var(--br-color-primary-default) !important;
+}
+
+/* Examples */
+.button-demo__examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.button-demo__example {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .button-demo__example,
+.br-theme-light .button-demo__example {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.button-demo__example h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  opacity: 0.7;
+}
+
+/* Code Block */
+.button-demo__code {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 24px;
+  overflow-x: auto;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--br-color-neutrals-200);
+}
+
+[data-theme="light"] .button-demo__code,
+.br-theme-light .button-demo__code {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: var(--br-color-neutrals-700);
+}

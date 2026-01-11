@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blue Rider DS - Button Preview</title>
+  
+  <!-- Google Fonts - Instrument Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       CSS Custom Properties (Design Tokens)
+       ========================================================================== */
+    
+    :root {
+      /* Primitives - Base */
+      --br-color-base-white: #FFFFFF;
+      --br-color-base-black: #191D1C;
+    
+      /* Primitives - Primary */
+      --br-color-primary-100: #DAF4F0;
+      --br-color-primary-200: #B4EAE2;
+      --br-color-primary-400: #69D5C5;
+      --br-color-primary-default: #44CAB6;
+      --br-color-primary-600: #36A292;
+      --br-color-primary-700: #29796D;
+      --br-color-primary-800: #1B5149;
+      --br-color-primary-900: #0E2824;
+    
+      /* Primitives - Neutrals */
+      --br-color-neutrals-100: #E5E9E8;
+      --br-color-neutrals-200: #CCD2D1;
+      --br-color-neutrals-300: #B2BCBB;
+      --br-color-neutrals-400: #99A5A4;
+      --br-color-neutrals-default: #7F8F8D;
+      --br-color-neutrals-600: #667271;
+      --br-color-neutrals-700: #4C5655;
+      --br-color-neutrals-800: #333938;
+    
+      /* Scale */
+      --br-scale-100: 4px;
+      --br-scale-200: 8px;
+      --br-scale-300: 12px;
+      --br-scale-400: 16px;
+      --br-scale-500: 20px;
+    
+      /* Radius */
+      --br-radius-sm: 4px;
+      --br-radius-med: 8px;
+      --br-radius-round: 48px;
+    
+      /* Widths */
+      --br-width-sm: 1px;
+      --br-width-med: 2px;
+    
+      /* Typography */
+      --br-font-family-primary: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --br-font-weight-medium: 500;
+      --br-font-weight-bold: 700;
+    
+      /* Transitions */
+      --br-transition-fast: 150ms ease-in-out;
+      --br-transition-normal: 200ms ease-in-out;
+
+      /* Semantic - Text on Action */
+      --br-text-on-action-primary: var(--br-color-base-black);
+    }
+    
+    /* ==========================================================================
+       Page Styles
+       ========================================================================== */
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: var(--br-font-family-primary);
+      line-height: 1.5;
+      background-color: var(--br-color-base-black);
+      color: var(--br-color-base-white);
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    [data-theme="light"] body {
+      background-color: var(--br-color-base-white);
+      color: var(--br-color-base-black);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--br-color-neutrals-700);
+    }
+    
+    [data-theme="light"] .header {
+      border-bottom-color: var(--br-color-neutrals-200);
+    }
+    
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--br-color-primary-default);
+    }
+    
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .theme-toggle label {
+      font-size: 14px;
+      color: var(--br-color-neutrals-300);
+    }
+    
+    [data-theme="light"] .theme-toggle label {
+      color: var(--br-color-neutrals-600);
+    }
+    
+    .toggle-switch {
+      position: relative;
+      width: 56px;
+      height: 28px;
+      background: var(--br-color-neutrals-700);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    [data-theme="light"] .toggle-switch {
+      background: var(--br-color-neutrals-300);
+    }
+    
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      background: var(--br-color-primary-default);
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    
+    [data-theme="light"] .toggle-switch::after {
+      transform: translateX(28px);
+    }
+    
+    .section {
+      margin-bottom: 48px;
+    }
+    
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: var(--br-color-neutrals-200);
+    }
+    
+    [data-theme="light"] .section-title {
+      color: var(--br-color-neutrals-700);
+    }
+    
+    .variant-row {
+      margin-bottom: 32px;
+    }
+    
+    .variant-label {
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--br-color-primary-default);
+      margin-bottom: 16px;
+    }
+    
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+    
+    .button-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .button-item span {
+      font-size: 12px;
+      color: var(--br-color-neutrals-400);
+    }
+    
+    /* ==========================================================================
+       Base Button Styles
+       ========================================================================== */
+    
+    .br-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--br-scale-200);
+      padding: var(--br-scale-200) var(--br-scale-400);
+      min-height: 40px;
+      font-family: var(--br-font-family-primary);
+      font-size: 14px;
+      font-weight: var(--br-font-weight-medium);
+      line-height: 1.4;
+      text-decoration: none;
+      border: var(--br-width-sm) solid transparent;
+      border-radius: var(--br-radius-med);
+      cursor: pointer;
+      outline: none;
+      /* For grain overlay */
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      transition:
+        background-color var(--br-transition-fast),
+        border-color var(--br-transition-fast),
+        color var(--br-transition-fast),
+        box-shadow var(--br-transition-fast),
+        transform var(--br-transition-fast);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Grain overlay for hover states */
+    .br-button::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      border-radius: inherit;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='2' intercept='-0.5'/%3E%3CfeFuncG type='linear' slope='2' intercept='-0.5'/%3E%3CfeFuncB type='linear' slope='2' intercept='-0.5'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+      opacity: 0;
+      mix-blend-mode: overlay;
+      transition: opacity var(--br-transition-fast);
+    }
+
+    .br-button:hover:not(:disabled)::after,
+    .br-button.is-hover::after {
+      opacity: 0.4;
+    }
+    
+    .br-button:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+    
+    /* Icon-Only Button */
+    .br-button--icon-only {
+      padding: var(--br-scale-200);
+      min-width: 40px;
+      width: 40px;
+      height: 40px;
+    }
+    
+    .br-button__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+    
+    .br-button__icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Ensure all text inside buttons inherits the button's color */
+    .br-button span {
+      color: inherit;
+    }
+    
+    /* Loading Spinner */
+    .br-button__spinner {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .br-button__spinner-icon {
+      width: 20px;
+      height: 20px;
+      animation: br-spin 1s linear infinite;
+    }
+    
+    @keyframes br-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    /* ==========================================================================
+       PRIMARY VARIANT - Dark Theme (Default)
+       ========================================================================== */
+    
+    .br-button--primary {
+      background-color: var(--br-color-primary-default);
+      border-color: var(--br-color-primary-default);
+      color: var(--br-text-on-action-primary);
+    }
+    
+    .br-button--primary:hover:not(:disabled) {
+      background-color: var(--br-color-primary-400);
+      border-color: var(--br-color-primary-400);
+    }
+    
+    .br-button--primary:active:not(:disabled),
+    .br-button--primary.is-pressed {
+      background-color: var(--br-color-primary-600);
+      border-color: var(--br-color-primary-600);
+    }
+    
+    .br-button--primary:focus-visible,
+    .br-button--primary.is-focused {
+      background-color: var(--br-color-primary-default);
+      border-color: var(--br-color-primary-default);
+      box-shadow:
+        0 0 0 2px var(--br-color-base-black),
+        0 0 0 4px var(--br-color-primary-default);
+    }
+    
+    .br-button--primary:disabled {
+      background-color: var(--br-color-neutrals-800);
+      border-color: var(--br-color-neutrals-800);
+      color: var(--br-color-neutrals-400);
+      cursor: not-allowed;
+    }
+    
+    /* PRIMARY - Light Theme */
+    [data-theme="light"] .br-button--primary:focus-visible,
+    [data-theme="light"] .br-button--primary.is-focused {
+      box-shadow:
+        0 0 0 2px var(--br-color-base-white),
+        0 0 0 4px var(--br-color-primary-default);
+    }
+    
+    [data-theme="light"] .br-button--primary:disabled {
+      background-color: var(--br-color-neutrals-100);
+      border-color: var(--br-color-neutrals-100);
+      color: var(--br-color-neutrals-400);
+    }
+    
+    /* ==========================================================================
+       SECONDARY VARIANT - Dark Theme (Default)
+       ========================================================================== */
+    
+    .br-button--secondary {
+      background-color: var(--br-color-primary-900);
+      border-color: var(--br-color-primary-900);
+      color: var(--br-color-primary-100);
+    }
+    
+    .br-button--secondary:hover:not(:disabled) {
+      background-color: var(--br-color-primary-900);
+      border-color: var(--br-color-primary-800);
+    }
+    
+    .br-button--secondary:active:not(:disabled),
+    .br-button--secondary.is-pressed {
+      background-color: var(--br-color-primary-900);
+      border-color: var(--br-color-primary-800);
+      color: var(--br-color-primary-200);
+    }
+    
+    .br-button--secondary:focus-visible,
+    .br-button--secondary.is-focused {
+      box-shadow:
+        0 0 0 2px var(--br-color-base-black),
+        0 0 0 4px var(--br-color-primary-default);
+    }
+    
+    .br-button--secondary:disabled {
+      background-color: var(--br-color-neutrals-800);
+      border-color: var(--br-color-neutrals-800);
+      color: var(--br-color-neutrals-400);
+      cursor: not-allowed;
+    }
+    
+    /* SECONDARY - Light Theme */
+    [data-theme="light"] .br-button--secondary:focus-visible,
+    [data-theme="light"] .br-button--secondary.is-focused {
+      box-shadow:
+        0 0 0 2px var(--br-color-base-white),
+        0 0 0 4px var(--br-color-primary-default);
+    }
+    
+    [data-theme="light"] .br-button--secondary:disabled {
+      background-color: var(--br-color-neutrals-100);
+      border-color: var(--br-color-neutrals-100);
+      color: var(--br-color-neutrals-400);
+    }
+    
+    /* ==========================================================================
+       FLAT VARIANT - Dark Theme (Default)
+       ========================================================================== */
+    
+    .br-button--flat {
+      background-color: transparent;
+      border-color: transparent;
+      color: var(--br-color-primary-100);
+    }
+    
+    .br-button--flat:hover:not(:disabled) {
+      background-color: transparent;
+      border-color: var(--br-color-primary-800);
+      color: var(--br-color-primary-100);
+    }
+    
+    .br-button--flat:active:not(:disabled),
+    .br-button--flat.is-pressed {
+      background-color: transparent;
+      border-color: var(--br-color-primary-800);
+      color: var(--br-color-primary-200);
+    }
+    
+    .br-button--flat:focus-visible,
+    .br-button--flat.is-focused {
+      background-color: transparent;
+      border-color: var(--br-color-primary-default);
+      box-shadow:
+        0 0 0 2px var(--br-color-base-black),
+        0 0 0 4px var(--br-color-primary-default);
+    }
+    
+    .br-button--flat:disabled {
+      background-color: transparent;
+      border-color: transparent;
+      color: var(--br-color-neutrals-default);
+      cursor: not-allowed;
+    }
+    
+    /* FLAT - Light Theme */
+    [data-theme="light"] .br-button--flat {
+      color: var(--br-color-primary-900);
+    }
+    
+    [data-theme="light"] .br-button--flat:hover:not(:disabled) {
+      color: var(--br-color-primary-900);
+    }
+    
+    [data-theme="light"] .br-button--flat:active:not(:disabled),
+    [data-theme="light"] .br-button--flat.is-pressed {
+      color: var(--br-color-primary-800);
+    }
+    
+    [data-theme="light"] .br-button--flat:focus-visible,
+    [data-theme="light"] .br-button--flat.is-focused {
+      box-shadow:
+        0 0 0 2px var(--br-color-base-white),
+        0 0 0 4px var(--br-color-primary-default);
+    }
+    
+    /* ==========================================================================
+       Forced States (for demo)
+       ========================================================================== */
+    
+    .br-button--primary.is-hover {
+      background-color: var(--br-color-primary-400);
+      border-color: var(--br-color-primary-400);
+    }
+    
+    .br-button--secondary.is-hover {
+      background-color: var(--br-color-primary-900);
+      border-color: var(--br-color-primary-800);
+    }
+    
+    .br-button--flat.is-hover {
+      border-color: var(--br-color-primary-800);
+    }
+
+    /* ==========================================================================
+       CaseStudyCard Component Styles
+       ========================================================================== */
+    
+    :root {
+      --br-case-study-gap: 48px;
+      --br-case-study-gap-sm: 32px;
+      --br-case-study-image-radius: var(--br-scale-300);
+      --br-case-study-transition: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .br-case-study-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--br-case-study-gap);
+      align-items: center;
+      width: 100%;
+    }
+
+    .br-case-study-card--text-left {
+      grid-template-areas: "content media";
+    }
+
+    .br-case-study-card--text-right {
+      grid-template-areas: "media content";
+    }
+
+    .br-case-study-card--gap-sm {
+      gap: var(--br-case-study-gap-sm);
+    }
+
+    .br-case-study-card__content {
+      grid-area: content;
+      display: flex;
+      flex-direction: column;
+      gap: var(--br-scale-500);
+    }
+
+    .br-case-study-card__overline {
+      font-family: var(--br-font-family-primary);
+      font-size: 12px;
+      font-weight: var(--br-font-weight-bold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--br-color-primary-default);
+      margin: 0;
+    }
+
+    .br-case-study-card__headline {
+      font-family: var(--br-font-family-primary);
+      font-size: 32px;
+      font-weight: var(--br-font-weight-bold);
+      line-height: 1.25;
+      color: var(--br-color-neutrals-100);
+      margin: 0;
+    }
+
+    .br-case-study-card__description {
+      font-family: var(--br-font-family-primary);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--br-color-neutrals-300);
+      margin: 0;
+    }
+
+    .br-case-study-card__description p {
+      margin: 0;
+    }
+
+    .br-case-study-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--br-scale-200);
+      margin-top: var(--br-scale-100);
+    }
+
+    .br-case-study-card__tag {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--br-scale-100) var(--br-scale-300);
+      font-family: var(--br-font-family-primary);
+      font-size: 12px;
+      font-weight: var(--br-font-weight-medium);
+      color: var(--br-color-primary-200);
+      background-color: var(--br-color-primary-900);
+      border-radius: var(--br-radius-round);
+      border: 1px solid var(--br-color-primary-800);
+    }
+
+    .br-case-study-card__cta {
+      margin-top: var(--br-scale-200);
+    }
+
+    .br-case-study-card__media {
+      grid-area: media;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--br-case-study-image-radius);
+      background-color: var(--br-color-neutrals-800);
+    }
+
+    .br-case-study-card__image-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: var(--br-case-study-image-radius);
+    }
+
+    .br-case-study-card__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--br-case-study-transition);
+    }
+
+    .br-case-study-card:hover .br-case-study-card__image {
+      transform: scale(1.03);
+    }
+
+    .br-case-study-card__image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(68, 202, 182, 0) 0%,
+        rgba(68, 202, 182, 0.15) 100%
+      );
+      opacity: 0;
+      transition: opacity var(--br-case-study-transition);
+      pointer-events: none;
+    }
+
+    .br-case-study-card:hover .br-case-study-card__image-overlay {
+      opacity: 1;
+    }
+
+    .br-case-study-card__slideshow {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: var(--br-case-study-image-radius);
+    }
+
+    .br-case-study-card__slides {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .br-case-study-card__slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 500ms ease-in-out;
+    }
+
+    .br-case-study-card__slide--active {
+      opacity: 1;
+    }
+
+    .br-case-study-card__slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .br-case-study-card__slideshow-controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--br-scale-400);
+      background: linear-gradient(
+        to top,
+        rgba(25, 29, 28, 0.8) 0%,
+        rgba(25, 29, 28, 0) 100%
+      );
+      z-index: 10;
+    }
+
+    .br-case-study-card__pagination {
+      display: flex;
+      align-items: center;
+      gap: var(--br-scale-200);
+    }
+
+    .br-case-study-card__pagination-dot {
+      width: 32px;
+      height: 3px;
+      background-color: var(--br-color-neutrals-600);
+      border-radius: 2px;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background-color var(--br-transition-fast);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .br-case-study-card__pagination-dot::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0;
+      background-color: var(--br-color-primary-default);
+      transition: width 0ms linear;
+    }
+
+    .br-case-study-card__pagination-dot--active::after {
+      width: 100%;
+    }
+
+    .br-case-study-card__pagination-dot--animating::after {
+      animation: br-slide-progress 5s linear forwards;
+    }
+
+    .br-case-study-card__pagination-dot--viewed {
+      background-color: var(--br-color-neutrals-400);
+    }
+
+    .br-case-study-card__pagination-dot:hover {
+      background-color: var(--br-color-neutrals-400);
+    }
+
+    @keyframes br-slide-progress {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .br-case-study-card__play-pause {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: 1px solid var(--br-color-neutrals-600);
+      border-radius: 50%;
+      color: var(--br-color-neutrals-200);
+      cursor: pointer;
+      transition: 
+        border-color var(--br-transition-fast),
+        color var(--br-transition-fast);
+    }
+
+    .br-case-study-card__play-pause:hover {
+      border-color: var(--br-color-primary-default);
+      color: var(--br-color-primary-default);
+    }
+
+    .br-case-study-card__play-pause svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Light Theme Overrides for CaseStudyCard */
+    [data-theme="light"] .br-case-study-card__headline {
+      color: var(--br-color-neutrals-900);
+    }
+
+    [data-theme="light"] .br-case-study-card__description {
+      color: var(--br-color-neutrals-600);
+    }
+
+    [data-theme="light"] .br-case-study-card__tag {
+      color: var(--br-color-primary-800);
+      background-color: var(--br-color-primary-100);
+      border-color: var(--br-color-primary-200);
+    }
+
+    [data-theme="light"] .br-case-study-card__media {
+      background-color: var(--br-color-neutrals-100);
+    }
+
+    [data-theme="light"] .br-case-study-card__slideshow-controls {
+      background: linear-gradient(
+        to top,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    }
+
+    [data-theme="light"] .br-case-study-card__pagination-dot {
+      background-color: var(--br-color-neutrals-300);
+    }
+
+    [data-theme="light"] .br-case-study-card__pagination-dot--viewed {
+      background-color: var(--br-color-neutrals-400);
+    }
+
+    [data-theme="light"] .br-case-study-card__play-pause {
+      color: var(--br-color-neutrals-700);
+      border-color: var(--br-color-neutrals-300);
+    }
+
+    [data-theme="light"] .header {
+      border-bottom-color: var(--br-color-neutrals-200);
+    }
+
+    [data-theme="light"] .section:last-of-type {
+      border-top-color: var(--br-color-neutrals-200) !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .br-case-study-card {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .br-case-study-card--text-left,
+      .br-case-study-card--text-right {
+        grid-template-areas: 
+          "media"
+          "content";
+      }
+
+      .br-case-study-card__headline {
+        font-size: 24px;
+      }
+
+      .br-case-study-card__image-wrapper,
+      .br-case-study-card__slideshow {
+        aspect-ratio: 4 / 3;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>🎨 Blue Rider Design System</h1>
+      <div class="theme-toggle">
+        <label>Dark</label>
+        <div class="toggle-switch" id="themeToggle" role="button" tabindex="0" aria-label="Toggle theme"></div>
+        <label>Light</label>
+      </div>
+    </header>
+    
+    <main>
+      <!-- Text Buttons -->
+      <section class="section">
+        <h2 class="section-title">Text Buttons</h2>
+        
+        <!-- Primary -->
+        <div class="variant-row">
+          <div class="variant-label">Primary</div>
+          <div class="button-group">
+            <div class="button-item">
+              <button class="br-button br-button--primary">
+                <span>Button</span>
+              </button>
+              <span>Default</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--primary is-hover">
+                <span>Button</span>
+              </button>
+              <span>Hover</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--primary is-pressed">
+                <span>Button</span>
+              </button>
+              <span>Pressed</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--primary is-focused">
+                <span>Button</span>
+              </button>
+              <span>Focus</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--primary" disabled>
+                <span>Button</span>
+              </button>
+              <span>Disabled</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Secondary -->
+        <div class="variant-row">
+          <div class="variant-label">Secondary</div>
+          <div class="button-group">
+            <div class="button-item">
+              <button class="br-button br-button--secondary">
+                <span>Button</span>
+              </button>
+              <span>Default</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--secondary is-hover">
+                <span>Button</span>
+              </button>
+              <span>Hover</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--secondary is-pressed">
+                <span>Button</span>
+              </button>
+              <span>Pressed</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--secondary is-focused">
+                <span>Button</span>
+              </button>
+              <span>Focus</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--secondary" disabled>
+                <span>Button</span>
+              </button>
+              <span>Disabled</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Flat -->
+        <div class="variant-row">
+          <div class="variant-label">Flat</div>
+          <div class="button-group">
+            <div class="button-item">
+              <button class="br-button br-button--flat">
+                <span>Button</span>
+              </button>
+              <span>Default</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--flat is-hover">
+                <span>Button</span>
+              </button>
+              <span>Hover</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--flat is-pressed">
+                <span>Button</span>
+              </button>
+              <span>Pressed</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--flat is-focused">
+                <span>Button</span>
+              </button>
+              <span>Focus</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--flat" disabled>
+                <span>Button</span>
+              </button>
+              <span>Disabled</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Icon Buttons -->
+      <section class="section">
+        <h2 class="section-title">Icon Buttons</h2>
+        
+        <!-- Primary Icon -->
+        <div class="variant-row">
+          <div class="variant-label">Primary</div>
+          <div class="button-group">
+            <div class="button-item">
+              <button class="br-button br-button--primary br-button--icon-only">
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                  </svg>
+                </span>
+              </button>
+              <span>Default</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--primary br-button--icon-only is-hover">
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                  </svg>
+                </span>
+              </button>
+              <span>Hover</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--primary br-button--icon-only is-pressed">
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                  </svg>
+                </span>
+              </button>
+              <span>Pressed</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--primary br-button--icon-only is-focused">
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                  </svg>
+                </span>
+              </button>
+              <span>Focus</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--primary br-button--icon-only" disabled>
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                  </svg>
+                </span>
+              </button>
+              <span>Disabled</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Secondary Icon -->
+        <div class="variant-row">
+          <div class="variant-label">Secondary</div>
+          <div class="button-group">
+            <div class="button-item">
+              <button class="br-button br-button--secondary br-button--icon-only">
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </button>
+              <span>Default</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--secondary br-button--icon-only is-hover">
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </button>
+              <span>Hover</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--secondary br-button--icon-only is-pressed">
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </button>
+              <span>Pressed</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--secondary br-button--icon-only is-focused">
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </button>
+              <span>Focus</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--secondary br-button--icon-only" disabled>
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </button>
+              <span>Disabled</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Flat Icon -->
+        <div class="variant-row">
+          <div class="variant-label">Flat</div>
+          <div class="button-group">
+            <div class="button-item">
+              <button class="br-button br-button--flat br-button--icon-only">
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </span>
+              </button>
+              <span>Default</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--flat br-button--icon-only is-hover">
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </span>
+              </button>
+              <span>Hover</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--flat br-button--icon-only is-pressed">
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </span>
+              </button>
+              <span>Pressed</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--flat br-button--icon-only is-focused">
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </span>
+              </button>
+              <span>Focus</span>
+            </div>
+            <div class="button-item">
+              <button class="br-button br-button--flat br-button--icon-only" disabled>
+                <span class="br-button__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </span>
+              </button>
+              <span>Disabled</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Buttons with Icons -->
+      <section class="section">
+        <h2 class="section-title">Buttons with Icons</h2>
+        
+        <div class="variant-row">
+          <div class="variant-label">Icon Left</div>
+          <div class="button-group">
+            <button class="br-button br-button--primary">
+              <span class="br-button__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+              <span>Add New</span>
+            </button>
+            <button class="br-button br-button--secondary">
+              <span class="br-button__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+              </span>
+              <span>Settings</span>
+            </button>
+            <button class="br-button br-button--flat">
+              <span class="br-button__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </span>
+              <span>Back</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="variant-row">
+          <div class="variant-label">Icon Right</div>
+          <div class="button-group">
+            <button class="br-button br-button--primary">
+              <span>Continue</span>
+              <span class="br-button__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </button>
+            <button class="br-button br-button--secondary">
+              <span>Next Step</span>
+              <span class="br-button__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </span>
+            </button>
+            <button class="br-button br-button--flat">
+              <span>Learn More</span>
+              <span class="br-button__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Loading State -->
+      <section class="section">
+        <h2 class="section-title">Loading State</h2>
+        <div class="button-group">
+          <button class="br-button br-button--primary" disabled>
+            <span class="br-button__spinner">
+              <svg class="br-button__spinner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+              </svg>
+            </span>
+            <span>Loading...</span>
+          </button>
+          <button class="br-button br-button--secondary" disabled>
+            <span class="br-button__spinner">
+              <svg class="br-button__spinner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+              </svg>
+            </span>
+            <span>Processing...</span>
+          </button>
+          <button class="br-button br-button--flat" disabled>
+            <span class="br-button__spinner">
+              <svg class="br-button__spinner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+              </svg>
+            </span>
+            <span>Please wait...</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Case Study Card -->
+      <section class="section" style="margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--br-color-neutrals-700);">
+        <h2 class="section-title">Case Study Card</h2>
+        <p style="color: var(--br-color-neutrals-400); font-size: 14px; margin-bottom: 32px;">
+          Diptych-style component for showcasing projects and case studies on a homepage.
+        </p>
+        
+        <!-- Text Left Layout with Slideshow -->
+        <div class="variant-row" style="margin-bottom: 64px;">
+          <div class="variant-label">Text Left + Slideshow</div>
+          <article class="br-case-study-card br-case-study-card--text-left">
+            <div class="br-case-study-card__content">
+              <p class="br-case-study-card__overline">Featured Project</p>
+              <h3 class="br-case-study-card__headline">Expressive and enduring digital experiences.</h3>
+              <div class="br-case-study-card__description">
+                <p>We help our clients accelerate progress, shape outcomes, and envision the future. Through collaboration across industries, we build scalable brand systems and products that leverage emerging technologies.</p>
+              </div>
+              <div class="br-case-study-card__tags">
+                <span class="br-case-study-card__tag">Brand Strategy</span>
+                <span class="br-case-study-card__tag">Design Systems</span>
+                <span class="br-case-study-card__tag">Product Design</span>
+              </div>
+              <div class="br-case-study-card__cta">
+                <button class="br-button br-button--primary">
+                  <span>View Case Study</span>
+                  <span class="br-button__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="br-case-study-card__media">
+              <div class="br-case-study-card__slideshow" id="slideshow1">
+                <div class="br-case-study-card__slides">
+                  <div class="br-case-study-card__slide br-case-study-card__slide--active" data-index="0">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=800&fit=crop" alt="Abstract gradient design">
+                  </div>
+                  <div class="br-case-study-card__slide" data-index="1">
+                    <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&h=800&fit=crop" alt="Colorful abstract shapes">
+                  </div>
+                  <div class="br-case-study-card__slide" data-index="2">
+                    <img src="https://images.unsplash.com/photo-1557683316-973673bdar25?w=800&h=800&fit=crop" alt="Digital art composition">
+                  </div>
+                  <div class="br-case-study-card__slide" data-index="3">
+                    <img src="https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=800&h=800&fit=crop" alt="Geometric patterns">
+                  </div>
+                </div>
+                <div class="br-case-study-card__slideshow-controls">
+                  <button class="br-case-study-card__play-pause" aria-label="Pause slideshow" data-playing="true">
+                    <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="6" y1="4" x2="6" y2="20"></line>
+                      <line x1="18" y1="4" x2="18" y2="20"></line>
+                    </svg>
+                    <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                  </button>
+                  <div class="br-case-study-card__pagination">
+                    <button class="br-case-study-card__pagination-dot br-case-study-card__pagination-dot--active br-case-study-card__pagination-dot--animating" data-index="0" aria-label="Go to slide 1"></button>
+                    <button class="br-case-study-card__pagination-dot" data-index="1" aria-label="Go to slide 2"></button>
+                    <button class="br-case-study-card__pagination-dot" data-index="2" aria-label="Go to slide 3"></button>
+                    <button class="br-case-study-card__pagination-dot" data-index="3" aria-label="Go to slide 4"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Text Right Layout with Single Image -->
+        <div class="variant-row" style="margin-bottom: 64px;">
+          <div class="variant-label">Text Right + Single Image</div>
+          <article class="br-case-study-card br-case-study-card--text-right">
+            <div class="br-case-study-card__content">
+              <p class="br-case-study-card__overline">Case Study</p>
+              <h3 class="br-case-study-card__headline">Reimagining the future of sustainable mobility.</h3>
+              <div class="br-case-study-card__description">
+                <p>A comprehensive brand refresh and digital ecosystem redesign for a leading electric vehicle company, focusing on user experience and environmental consciousness.</p>
+              </div>
+              <div class="br-case-study-card__tags">
+                <span class="br-case-study-card__tag">Mobility</span>
+                <span class="br-case-study-card__tag">Sustainability</span>
+              </div>
+              <div class="br-case-study-card__cta">
+                <button class="br-button br-button--secondary">
+                  <span>Explore Project</span>
+                  <span class="br-button__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="br-case-study-card__media">
+              <div class="br-case-study-card__image-wrapper">
+                <img class="br-case-study-card__image" src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=800&fit=crop" alt="Electric vehicle dashboard">
+                <div class="br-case-study-card__image-overlay"></div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Minimal Style -->
+        <div class="variant-row">
+          <div class="variant-label">Minimal Style</div>
+          <article class="br-case-study-card br-case-study-card--text-left br-case-study-card--gap-sm">
+            <div class="br-case-study-card__content">
+              <h3 class="br-case-study-card__headline">Building the next generation healthcare platform.</h3>
+              <div class="br-case-study-card__description">
+                <p>End-to-end design and development of a telemedicine platform connecting patients with healthcare providers globally.</p>
+              </div>
+              <div class="br-case-study-card__cta">
+                <button class="br-button br-button--flat">
+                  <span>Learn More</span>
+                  <span class="br-button__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="br-case-study-card__media">
+              <div class="br-case-study-card__image-wrapper">
+                <img class="br-case-study-card__image" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=800&fit=crop" alt="Healthcare technology interface">
+                <div class="br-case-study-card__image-overlay"></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+    });
+    
+    themeToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        themeToggle.click();
+      }
+    });
+
+    // Slideshow functionality for CaseStudyCard
+    class Slideshow {
+      constructor(container) {
+        this.container = container;
+        this.slides = container.querySelectorAll('.br-case-study-card__slide');
+        this.dots = container.querySelectorAll('.br-case-study-card__pagination-dot');
+        this.playPauseBtn = container.querySelector('.br-case-study-card__play-pause');
+        this.pauseIcon = this.playPauseBtn?.querySelector('.pause-icon');
+        this.playIcon = this.playPauseBtn?.querySelector('.play-icon');
+        
+        this.currentIndex = 0;
+        this.isPlaying = true;
+        this.interval = null;
+        this.duration = 5000;
+        this.viewedSlides = new Set([0]);
+        
+        this.init();
+      }
+
+      init() {
+        // Set up dot clicks
+        this.dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => this.goToSlide(index));
+        });
+
+        // Set up play/pause button
+        if (this.playPauseBtn) {
+          this.playPauseBtn.addEventListener('click', () => this.togglePlayPause());
+        }
+
+        // Start autoplay
+        this.startAutoPlay();
+      }
+
+      goToSlide(index) {
+        // Remove active state from current slide and dot
+        this.slides[this.currentIndex].classList.remove('br-case-study-card__slide--active');
+        this.dots[this.currentIndex].classList.remove('br-case-study-card__pagination-dot--active', 'br-case-study-card__pagination-dot--animating');
+        
+        // Mark previous as viewed
+        this.viewedSlides.add(this.currentIndex);
+        this.dots[this.currentIndex].classList.add('br-case-study-card__pagination-dot--viewed');
+
+        // Update current index
+        this.currentIndex = index;
+        this.viewedSlides.add(index);
+
+        // Add active state to new slide and dot
+        this.slides[this.currentIndex].classList.add('br-case-study-card__slide--active');
+        this.dots[this.currentIndex].classList.add('br-case-study-card__pagination-dot--active');
+        
+        if (this.isPlaying) {
+          this.dots[this.currentIndex].classList.add('br-case-study-card__pagination-dot--animating');
+        }
+
+        // Restart autoplay timer
+        if (this.isPlaying) {
+          this.stopAutoPlay();
+          this.startAutoPlay();
+        }
+      }
+
+      nextSlide() {
+        const nextIndex = (this.currentIndex + 1) % this.slides.length;
+        this.goToSlide(nextIndex);
+      }
+
+      startAutoPlay() {
+        if (this.interval) return;
+        
+        this.interval = setInterval(() => {
+          this.nextSlide();
+        }, this.duration);
+
+        // Add animation class to current dot
+        this.dots[this.currentIndex].classList.add('br-case-study-card__pagination-dot--animating');
+      }
+
+      stopAutoPlay() {
+        if (this.interval) {
+          clearInterval(this.interval);
+          this.interval = null;
+        }
+        
+        // Remove animation class
+        this.dots[this.currentIndex].classList.remove('br-case-study-card__pagination-dot--animating');
+      }
+
+      togglePlayPause() {
+        this.isPlaying = !this.isPlaying;
+        
+        if (this.isPlaying) {
+          this.startAutoPlay();
+          if (this.pauseIcon) this.pauseIcon.style.display = '';
+          if (this.playIcon) this.playIcon.style.display = 'none';
+          this.playPauseBtn.setAttribute('aria-label', 'Pause slideshow');
+        } else {
+          this.stopAutoPlay();
+          if (this.pauseIcon) this.pauseIcon.style.display = 'none';
+          if (this.playIcon) this.playIcon.style.display = '';
+          this.playPauseBtn.setAttribute('aria-label', 'Play slideshow');
+        }
+      }
+    }
+
+    // Initialize all slideshows on the page
+    document.querySelectorAll('.br-case-study-card__slideshow').forEach(container => {
+      new Slideshow(container);
+    });
+  </script>
+</body>
+</html>

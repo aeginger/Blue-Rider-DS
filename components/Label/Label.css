@@ -1,0 +1,182 @@
+/* ==========================================================================
+   Label Component - Blue Rider Design System
+   Matching exact Figma specifications
+   ========================================================================== */
+
+/* Base Label Styles (from Figma) */
+.br-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px;
+  gap: 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  /* Paragraph/Bold/Medium typography */
+  font-family: var(--br-font-family-primary, 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: var(--br-font-size-paragraph-md, 16px);
+  font-weight: var(--br-font-weight-bold, 700);
+  line-height: var(--br-line-height-paragraph-md, 24px);
+  white-space: nowrap;
+}
+
+/* Label Icon */
+.br-label__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.br-label__icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  fill: none;
+}
+
+/* ==========================================================================
+   Dark Theme (Default) - Using Figma semantic tokens
+   Background and Stroke use the same color per variant
+   ========================================================================== */
+
+/* Information Label - Dark Theme */
+.br-label--information {
+  background-color: var(--br-background-informational, #006399);
+  border-color: var(--br-stroke-informational, #006399);
+  color: var(--br-color-base-white, #FFFFFF);
+}
+
+.br-label--information .br-label__icon {
+  color: var(--br-color-information-200, #99DBFF);
+}
+
+/* Success Label - Dark Theme */
+.br-label--success {
+  background-color: var(--br-background-success, #25803F);
+  border-color: var(--br-stroke-success, #25803F);
+  color: var(--br-color-base-white, #FFFFFF);
+}
+
+.br-label--success .br-label__icon {
+  color: var(--br-color-success-200, #B2EFC3);
+}
+
+/* Error Label - Dark Theme */
+.br-label--error {
+  background-color: var(--br-background-error, #972525);
+  border-color: var(--br-stroke-error, #972525);
+  color: var(--br-color-base-white, #FFFFFF);
+}
+
+.br-label--error .br-label__icon {
+  color: var(--br-color-error-200, #FEB1B1);
+}
+
+/* Warning Label - Dark Theme */
+.br-label--warning {
+  background-color: var(--br-background-warning, #995E00);
+  border-color: var(--br-stroke-warning, #995E00);
+  color: var(--br-color-base-white, #FFFFFF);
+}
+
+.br-label--warning .br-label__icon {
+  color: var(--br-color-warning-200, #FFD899);
+}
+
+/* Neutral Label - Dark Theme */
+.br-label--neutral {
+  background-color: var(--br-background-secondary, #333938);
+  border-color: var(--br-stroke-primary, #4C5655);
+  color: var(--br-color-base-white, #FFFFFF);
+}
+
+.br-label--neutral .br-label__icon {
+  color: var(--br-color-neutrals-300, #B2BCBB);
+}
+
+/* ==========================================================================
+   Light Theme - Using Figma semantic tokens
+   Pastel backgrounds with colored borders
+   ========================================================================== */
+
+[data-theme="light"] .br-label--information {
+  background-color: var(--br-background-informational, #CCEDFF);
+  border-color: transparent;
+  color: var(--br-text-information, #004266);
+}
+
+[data-theme="light"] .br-label--information .br-label__icon {
+  color: var(--br-icon-informational, #0085CC);
+}
+
+[data-theme="light"] .br-label--success {
+  background-color: var(--br-background-success, #D8F7E1);
+  border-color: transparent;
+  color: var(--br-text-success, #19562A);
+}
+
+[data-theme="light"] .br-label--success .br-label__icon {
+  color: var(--br-icon-success, #32AB54);
+}
+
+[data-theme="light"] .br-label--error {
+  background-color: var(--br-background-error, #FED8D8);
+  border-color: transparent;
+  color: var(--br-text-error, #651818);
+}
+
+[data-theme="light"] .br-label--error .br-label__icon {
+  color: var(--br-icon-error, #CA3131);
+}
+
+[data-theme="light"] .br-label--warning {
+  background-color: var(--br-background-warning, #FFEBCC);
+  border-color: transparent;
+  color: var(--br-text-warning, #663F00);
+}
+
+[data-theme="light"] .br-label--warning .br-label__icon {
+  color: var(--br-icon-warning, #CC7E00);
+}
+
+[data-theme="light"] .br-label--neutral {
+  background-color: var(--br-background-secondary, #E5E9E8);
+  border-color: transparent;
+  color: var(--br-text-paragraph, #333938);
+}
+
+[data-theme="light"] .br-label--neutral .br-label__icon {
+  color: var(--br-icon-primary, #333938);
+}
+
+/* ==========================================================================
+   Label Sizes
+   ========================================================================== */
+
+/* Small Label */
+.br-label--sm {
+  padding: 4px;
+  font-size: 12px;
+  gap: 6px;
+}
+
+.br-label--sm .br-label__icon {
+  width: 12px;
+  height: 12px;
+}
+
+/* Large Label */
+.br-label--lg {
+  padding: 12px;
+  font-size: 16px;
+  gap: 12px;
+}
+
+.br-label--lg .br-label__icon {
+  width: 20px;
+  height: 20px;
+}
+
+

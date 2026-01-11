@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grain Overlay Preview - Blue Rider DS</title>
+  <link rel="stylesheet" href="components/GrainOverlay/GrainOverlay.css">
+  <style>
+    /* Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #191D1C;
+      color: #E5E9E8;
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #99A5A4;
+      margin-bottom: 48px;
+      font-size: 16px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #CCD2D1;
+    }
+
+    .section {
+      margin-bottom: 64px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      border-radius: 12px;
+      padding: 32px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .card-label {
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0.8;
+      margin-bottom: 4px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    /* Background colors for demo */
+    .bg-black { background-color: #191D1C; }
+    .bg-primary-900 { background-color: #0E2824; }
+    .bg-primary-800 { background-color: #1B5149; }
+    .bg-primary-700 { background-color: #29796D; }
+    .bg-primary-default { background-color: #44CAB6; color: #191D1C; }
+    .bg-neutrals-800 { background-color: #333938; }
+    .bg-white { background-color: #FFFFFF; color: #191D1C; }
+    .bg-neutrals-100 { background-color: #E5E9E8; color: #191D1C; }
+    .bg-gradient { 
+      background: linear-gradient(135deg, #0E2824 0%, #1B5149 50%, #29796D 100%);
+    }
+
+    /* Hero section demo */
+    .hero-demo {
+      border-radius: 16px;
+      padding: 80px 48px;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .hero-demo h3 {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .hero-demo p {
+      font-size: 18px;
+      color: #B2BCBB;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* Comparison section */
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .comparison-card {
+      border-radius: 12px;
+      padding: 48px 32px;
+      text-align: center;
+    }
+
+    .comparison-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .comparison-card p {
+      font-size: 14px;
+      color: #99A5A4;
+    }
+
+    /* Code block */
+    .code-block {
+      background: #0E2824;
+      border-radius: 8px;
+      padding: 20px 24px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      overflow-x: auto;
+      margin-top: 32px;
+    }
+
+    .code-comment {
+      color: #667271;
+    }
+
+    .code-class {
+      color: #44CAB6;
+    }
+
+    .code-tag {
+      color: #69D5C5;
+    }
+
+    /* Full page demo section */
+    .full-page-demo {
+      border-radius: 16px;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 48px;
+    }
+
+    .full-page-demo h3 {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .full-page-demo p {
+      color: #B2BCBB;
+      max-width: 400px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(68, 202, 182, 0.15);
+      color: #44CAB6;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Grain Overlay</h1>
+  <p class="subtitle">A transparent texture overlay that adds fine grain to any background color</p>
+
+  <!-- Hero Demo -->
+  <div class="hero-demo bg-primary-900 br-grain br-grain--medium">
+    <span class="badge">Live Preview</span>
+    <h3>Premium Texture Effect</h3>
+    <p>This hero section demonstrates the grain overlay on a dark teal background. Notice the subtle organic texture.</p>
+  </div>
+
+  <!-- Comparison -->
+  <section class="section">
+    <h2>With vs Without Grain</h2>
+    <div class="comparison">
+      <div class="comparison-card bg-primary-900">
+        <h4>Without Grain</h4>
+        <p>Flat, digital appearance</p>
+      </div>
+      <div class="comparison-card bg-primary-900 br-grain br-grain--medium">
+        <h4>With Grain</h4>
+        <p>Organic, textured feel</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intensity Variants -->
+  <section class="section">
+    <h2>Intensity Levels</h2>
+    <div class="grid">
+      <div class="card bg-black br-grain br-grain--subtle">
+        <span class="card-label">.br-grain--subtle</span>
+        <span class="card-title">Subtle</span>
+      </div>
+      <div class="card bg-black br-grain br-grain--light">
+        <span class="card-label">.br-grain--light</span>
+        <span class="card-title">Light</span>
+      </div>
+      <div class="card bg-black br-grain br-grain--medium">
+        <span class="card-label">.br-grain--medium</span>
+        <span class="card-title">Medium (Default)</span>
+      </div>
+      <div class="card bg-black br-grain br-grain--strong">
+        <span class="card-label">.br-grain--strong</span>
+        <span class="card-title">Strong</span>
+      </div>
+      <div class="card bg-black br-grain br-grain--heavy">
+        <span class="card-label">.br-grain--heavy</span>
+        <span class="card-title">Heavy</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pattern Variants -->
+  <section class="section">
+    <h2>Grain Pattern</h2>
+    <div class="grid">
+      <div class="card bg-primary-900 br-grain br-grain--fine br-grain--strong">
+        <span class="card-label">.br-grain--fine</span>
+        <span class="card-title">Fine Grain</span>
+      </div>
+      <div class="card bg-primary-900 br-grain br-grain--strong">
+        <span class="card-label">Default</span>
+        <span class="card-title">Normal Grain</span>
+      </div>
+      <div class="card bg-primary-900 br-grain br-grain--coarse br-grain--strong">
+        <span class="card-label">.br-grain--coarse</span>
+        <span class="card-title">Coarse Grain</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Works on Any Color -->
+  <section class="section">
+    <h2>Works on Any Background</h2>
+    <div class="grid">
+      <div class="card bg-black br-grain">
+        <span class="card-label">Base Black</span>
+        <span class="card-title">#191D1C</span>
+      </div>
+      <div class="card bg-primary-900 br-grain">
+        <span class="card-label">Primary 900</span>
+        <span class="card-title">#0E2824</span>
+      </div>
+      <div class="card bg-primary-800 br-grain">
+        <span class="card-label">Primary 800</span>
+        <span class="card-title">#1B5149</span>
+      </div>
+      <div class="card bg-primary-700 br-grain">
+        <span class="card-label">Primary 700</span>
+        <span class="card-title">#29796D</span>
+      </div>
+      <div class="card bg-neutrals-800 br-grain">
+        <span class="card-label">Neutrals 800</span>
+        <span class="card-title">#333938</span>
+      </div>
+      <div class="card bg-gradient br-grain">
+        <span class="card-label">Gradient</span>
+        <span class="card-title">Works on gradients too!</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Light Backgrounds -->
+  <section class="section">
+    <h2>Light Backgrounds</h2>
+    <p style="color: #99A5A4; margin-bottom: 24px;">Use <code style="color: #44CAB6;">.br-grain--light</code> for light backgrounds</p>
+    <div class="grid">
+      <div class="card bg-white br-grain br-grain--light">
+        <span class="card-label">Base White</span>
+        <span class="card-title">#FFFFFF</span>
+      </div>
+      <div class="card bg-neutrals-100 br-grain br-grain--light">
+        <span class="card-label">Neutrals 100</span>
+        <span class="card-title">#E5E9E8</span>
+      </div>
+      <div class="card bg-primary-default br-grain br-grain--light">
+        <span class="card-label">Primary Default</span>
+        <span class="card-title">#44CAB6</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Animated Grain -->
+  <section class="section">
+    <h2>Animated Grain</h2>
+    <div class="full-page-demo bg-primary-900 br-grain br-grain--animated br-grain--light">
+      <span class="badge">Animated</span>
+      <h3>Subtle Motion</h3>
+      <p>Use <code style="color: #44CAB6;">.br-grain--animated</code> for a subtle shifting effect. Best used sparingly.</p>
+    </div>
+  </section>
+
+  <!-- Usage -->
+  <section class="section">
+    <h2>Usage</h2>
+    <div class="code-block">
+      <span class="code-comment">&lt;!-- Basic usage --&gt;</span><br>
+      <span class="code-tag">&lt;div</span> <span class="code-class">class="br-grain"</span><span class="code-tag">&gt;</span>Your content<span class="code-tag">&lt;/div&gt;</span><br><br>
+      <span class="code-comment">&lt;!-- With intensity --&gt;</span><br>
+      <span class="code-tag">&lt;section</span> <span class="code-class">class="br-grain br-grain--subtle"</span><span class="code-tag">&gt;</span>...<span class="code-tag">&lt;/section&gt;</span><br><br>
+      <span class="code-comment">&lt;!-- For light backgrounds --&gt;</span><br>
+      <span class="code-tag">&lt;div</span> <span class="code-class">class="br-grain br-grain--light"</span><span class="code-tag">&gt;</span>...<span class="code-tag">&lt;/div&gt;</span><br><br>
+      <span class="code-comment">&lt;!-- Combine modifiers --&gt;</span><br>
+      <span class="code-tag">&lt;div</span> <span class="code-class">class="br-grain br-grain--fine br-grain--strong"</span><span class="code-tag">&gt;</span>...<span class="code-tag">&lt;/div&gt;</span><br><br>
+      <span class="code-comment">&lt;!-- Full page grain --&gt;</span><br>
+      <span class="code-tag">&lt;body</span> <span class="code-class">class="br-page-grain"</span><span class="code-tag">&gt;</span>...<span class="code-tag">&lt;/body&gt;</span>
+    </div>
+  </section>
+
+</body>
+</html>
+
+

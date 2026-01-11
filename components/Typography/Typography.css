@@ -1,0 +1,375 @@
+/**
+ * Blue Rider Design System - Typography
+ * Type scale based on design-system.tokens.json
+ */
+
+/* ==========================================================================
+   CSS Custom Properties (Typography Tokens)
+   ========================================================================== */
+
+:root {
+  /* Font Families */
+  --br-font-family-display: 'Clash Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --br-font-family-primary: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --br-font-family-mono: 'IBM Plex Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+
+  /* Font Weights */
+  --br-font-weight-regular: 400;
+  --br-font-weight-medium: 500;
+  --br-font-weight-bold: 700;
+
+  /* Font Sizes */
+  --br-font-size-display: 56px;
+  --br-font-size-h1: 40px;
+  --br-font-size-h2: 32px;
+  --br-font-size-h3: 24px;
+  --br-font-size-h4: 20px;
+  --br-font-size-paragraph-lg: 20px;
+  --br-font-size-paragraph-md: 16px;
+  --br-font-size-paragraph-sm: 14px;
+  --br-font-size-caption: 12px;
+
+  /* Line Heights */
+  --br-line-height-display: 96px;
+  --br-line-height-h1: 48px;
+  --br-line-height-h2: 40px;
+  --br-line-height-h3: 36px;
+  --br-line-height-h4: 32px;
+  --br-line-height-paragraph-lg: 32px;
+  --br-line-height-paragraph-md: 24px;
+  --br-line-height-paragraph-sm: 22px;
+  --br-line-height-caption: 16px;
+
+  /* Text Colors (Dark Theme Default) */
+  --br-text-color-heading: #E5E9E8;
+  --br-text-color-paragraph: #CCD2D1;
+  --br-text-color-caption: #B2BCBB;
+  --br-text-color-link: #44CAB6;
+  --br-text-color-link-hover: #69D5C5;
+}
+
+/* Light Theme Text Colors */
+[data-theme="light"],
+.br-theme-light {
+  --br-text-color-heading: #191D1C;
+  --br-text-color-paragraph: #333938;
+  --br-text-color-caption: #667271;
+  --br-text-color-link: #44CAB6;
+  --br-text-color-link-hover: #36A292;
+}
+
+/* ==========================================================================
+   Headings
+   ========================================================================== */
+
+.br-heading-display {
+  font-family: var(--br-font-family-display);
+  font-size: var(--br-font-size-display);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-display);
+  letter-spacing: 0;
+  color: var(--br-text-color-heading);
+  margin: 0;
+}
+
+.br-heading-h1,
+.br-h1 {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-h1);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-h1);
+  letter-spacing: 0;
+  color: var(--br-text-color-heading);
+  margin: 0;
+}
+
+.br-heading-h2,
+.br-h2 {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-h2);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-h2);
+  letter-spacing: 0;
+  color: var(--br-text-color-heading);
+  margin: 0;
+}
+
+.br-heading-h3,
+.br-h3 {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-h3);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-h3);
+  letter-spacing: 0;
+  color: var(--br-text-color-heading);
+  margin: 0;
+}
+
+.br-heading-h4,
+.br-h4 {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-h4);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-h4);
+  letter-spacing: 0;
+  color: var(--br-text-color-heading);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Paragraph - Bold
+   ========================================================================== */
+
+.br-paragraph-bold-lg {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-paragraph-lg);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-paragraph-lg);
+  letter-spacing: 0;
+  color: var(--br-text-color-paragraph);
+  margin: 0;
+}
+
+.br-paragraph-bold-md {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-paragraph-md);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-paragraph-md);
+  letter-spacing: 0;
+  color: var(--br-text-color-paragraph);
+  margin: 0;
+}
+
+.br-paragraph-bold-sm {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-paragraph-sm);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-paragraph-sm);
+  letter-spacing: 0;
+  color: var(--br-text-color-paragraph);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Paragraph - Regular
+   ========================================================================== */
+
+.br-paragraph-regular-lg,
+.br-paragraph-lg {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-paragraph-lg);
+  font-weight: var(--br-font-weight-regular);
+  line-height: var(--br-line-height-paragraph-lg);
+  letter-spacing: 0;
+  color: var(--br-text-color-paragraph);
+  margin: 0;
+}
+
+.br-paragraph-regular-md,
+.br-paragraph-md,
+.br-paragraph {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-paragraph-md);
+  font-weight: var(--br-font-weight-regular);
+  line-height: var(--br-line-height-paragraph-md);
+  letter-spacing: 0;
+  color: var(--br-text-color-paragraph);
+  margin: 0;
+}
+
+.br-paragraph-regular-sm,
+.br-paragraph-sm {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-paragraph-sm);
+  font-weight: var(--br-font-weight-regular);
+  line-height: var(--br-line-height-paragraph-sm);
+  letter-spacing: 0;
+  color: var(--br-text-color-paragraph);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Caption
+   ========================================================================== */
+
+.br-caption {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-caption);
+  font-weight: var(--br-font-weight-regular);
+  line-height: var(--br-line-height-caption);
+  letter-spacing: 0;
+  color: var(--br-text-color-caption);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+.br-link-lg {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-paragraph-lg);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-paragraph-lg);
+  letter-spacing: 0;
+  color: var(--br-text-color-link);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 150ms ease-in-out;
+}
+
+.br-link-lg:hover {
+  color: var(--br-text-color-link-hover);
+}
+
+.br-link-md,
+.br-link {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-paragraph-md);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-paragraph-md);
+  letter-spacing: 0;
+  color: var(--br-text-color-link);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 150ms ease-in-out;
+}
+
+.br-link-md:hover,
+.br-link:hover {
+  color: var(--br-text-color-link-hover);
+}
+
+.br-link-sm {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-paragraph-sm);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-paragraph-sm);
+  letter-spacing: 0;
+  color: var(--br-text-color-link);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 150ms ease-in-out;
+}
+
+.br-link-sm:hover {
+  color: var(--br-text-color-link-hover);
+}
+
+.br-link-caption {
+  font-family: var(--br-font-family-primary);
+  font-size: var(--br-font-size-caption);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-caption);
+  letter-spacing: 0;
+  color: var(--br-text-color-link);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 150ms ease-in-out;
+}
+
+.br-link-caption:hover {
+  color: var(--br-text-color-link-hover);
+}
+
+/* ==========================================================================
+   Mono - Bold
+   ========================================================================== */
+
+.br-mono-bold-lg {
+  font-family: var(--br-font-family-mono);
+  font-size: var(--br-font-size-paragraph-lg);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-paragraph-lg);
+  letter-spacing: 0;
+  color: var(--br-text-color-paragraph);
+  margin: 0;
+}
+
+.br-mono-bold-md {
+  font-family: var(--br-font-family-mono);
+  font-size: var(--br-font-size-paragraph-md);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-paragraph-md);
+  letter-spacing: 0;
+  color: var(--br-text-color-paragraph);
+  margin: 0;
+}
+
+.br-mono-bold-sm {
+  font-family: var(--br-font-family-mono);
+  font-size: var(--br-font-size-paragraph-sm);
+  font-weight: var(--br-font-weight-bold);
+  line-height: var(--br-line-height-paragraph-sm);
+  letter-spacing: 0;
+  color: var(--br-text-color-paragraph);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Mono - Regular
+   ========================================================================== */
+
+.br-mono-regular-lg,
+.br-mono-lg {
+  font-family: var(--br-font-family-mono);
+  font-size: var(--br-font-size-paragraph-lg);
+  font-weight: var(--br-font-weight-regular);
+  line-height: var(--br-line-height-paragraph-lg);
+  letter-spacing: 0;
+  color: var(--br-text-color-paragraph);
+  margin: 0;
+}
+
+.br-mono-regular-md,
+.br-mono-md,
+.br-mono {
+  font-family: var(--br-font-family-mono);
+  font-size: var(--br-font-size-paragraph-md);
+  font-weight: var(--br-font-weight-regular);
+  line-height: var(--br-line-height-paragraph-md);
+  letter-spacing: 0;
+  color: var(--br-text-color-paragraph);
+  margin: 0;
+}
+
+.br-mono-regular-sm,
+.br-mono-sm {
+  font-family: var(--br-font-family-mono);
+  font-size: var(--br-font-size-paragraph-sm);
+  font-weight: var(--br-font-weight-regular);
+  line-height: var(--br-line-height-paragraph-sm);
+  letter-spacing: 0;
+  color: var(--br-text-color-paragraph);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+/* Font Family Utilities */
+.br-font-display { font-family: var(--br-font-family-display); }
+.br-font-primary { font-family: var(--br-font-family-primary); }
+.br-font-mono { font-family: var(--br-font-family-mono); }
+
+/* Font Weight Utilities */
+.br-font-regular { font-weight: var(--br-font-weight-regular); }
+.br-font-medium { font-weight: var(--br-font-weight-medium); }
+.br-font-bold { font-weight: var(--br-font-weight-bold); }
+
+/* Text Color Utilities */
+.br-text-heading { color: var(--br-text-color-heading); }
+.br-text-paragraph { color: var(--br-text-color-paragraph); }
+.br-text-caption { color: var(--br-text-color-caption); }
+.br-text-link { color: var(--br-text-color-link); }
+
+/* Text Alignment */
+.br-text-left { text-align: left; }
+.br-text-center { text-align: center; }
+.br-text-right { text-align: right; }
+
+/* Text Transform */
+.br-text-uppercase { text-transform: uppercase; }
+.br-text-lowercase { text-transform: lowercase; }
+.br-text-capitalize { text-transform: capitalize; }

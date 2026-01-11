@@ -1,0 +1,224 @@
+/**
+ * Blue Rider Design System - Grain Overlay
+ * A transparent texture overlay that adds fine grain to any background color.
+ * Inspired by premium digital interfaces like hex.tech
+ */
+
+/* ==========================================================================
+   CSS Custom Properties (Grain Tokens)
+   ========================================================================== */
+
+:root {
+  /* Grain Intensity Levels */
+  --br-grain-opacity-subtle: 0.25;
+  --br-grain-opacity-light: 0.40;
+  --br-grain-opacity-medium: 0.55;
+  --br-grain-opacity-strong: 0.70;
+  --br-grain-opacity-heavy: 0.85;
+
+  /* Grain Pattern Settings */
+  --br-grain-frequency: 0.7;
+  --br-grain-octaves: 4;
+
+  /* Blend modes for different backgrounds */
+  --br-grain-blend-dark: overlay;
+  --br-grain-blend-light: overlay;
+}
+
+/* ==========================================================================
+   Base Grain Overlay
+   ========================================================================== */
+
+/**
+ * Apply .br-grain to any container to add a subtle noise texture.
+ * The grain is applied via ::after pseudo-element and won't interfere
+ * with content or click events.
+ *
+ * Usage:
+ *   <div class="br-grain">Your content</div>
+ *   <section class="br-grain br-grain--subtle">...</section>
+ */
+
+.br-grain {
+  position: relative;
+  isolation: isolate;
+}
+
+.br-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  /* SVG noise pattern using feTurbulence with contrast boost */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='2' intercept='-0.5'/%3E%3CfeFuncG type='linear' slope='2' intercept='-0.5'/%3E%3CfeFuncB type='linear' slope='2' intercept='-0.5'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+
+  /* Default: medium intensity */
+  opacity: var(--br-grain-opacity-medium);
+
+  /* Dark backgrounds (default) */
+  mix-blend-mode: var(--br-grain-blend-dark);
+}
+
+/* ==========================================================================
+   Intensity Variants
+   ========================================================================== */
+
+/* Barely visible - for very subtle texture */
+.br-grain--subtle::after {
+  opacity: var(--br-grain-opacity-subtle);
+}
+
+/* Light touch - visible but unobtrusive */
+.br-grain--light::after {
+  opacity: var(--br-grain-opacity-light);
+}
+
+/* Medium (default) - balanced texture */
+.br-grain--medium::after {
+  opacity: var(--br-grain-opacity-medium);
+}
+
+/* Strong - more pronounced grain */
+.br-grain--strong::after {
+  opacity: var(--br-grain-opacity-strong);
+}
+
+/* Heavy - very visible texture */
+.br-grain--heavy::after {
+  opacity: var(--br-grain-opacity-heavy);
+}
+
+/* ==========================================================================
+   Background Type Variants
+   ========================================================================== */
+
+/**
+ * Use .br-grain--dark on dark backgrounds (default behavior)
+ * Use .br-grain--light on light backgrounds for better blending
+ */
+
+.br-grain--dark::after {
+  mix-blend-mode: var(--br-grain-blend-dark);
+}
+
+.br-grain--light::after {
+  mix-blend-mode: var(--br-grain-blend-light);
+  opacity: var(--br-grain-opacity-medium);
+}
+
+/* Auto-switch blend mode based on theme */
+[data-theme="light"] .br-grain::after,
+.br-theme-light .br-grain::after {
+  mix-blend-mode: var(--br-grain-blend-light);
+  opacity: var(--br-grain-opacity-medium);
+}
+
+/* Override auto-switch when explicitly set */
+[data-theme="light"] .br-grain--dark::after,
+.br-theme-light .br-grain--dark::after {
+  mix-blend-mode: var(--br-grain-blend-dark);
+}
+
+/* ==========================================================================
+   Grain Pattern Variants
+   ========================================================================== */
+
+/* Finer grain - higher frequency noise */
+.br-grain--fine::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='2' intercept='-0.5'/%3E%3CfeFuncG type='linear' slope='2' intercept='-0.5'/%3E%3CfeFuncB type='linear' slope='2' intercept='-0.5'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+}
+
+/* Coarser grain - lower frequency noise */
+.br-grain--coarse::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='2' intercept='-0.5'/%3E%3CfeFuncG type='linear' slope='2' intercept='-0.5'/%3E%3CfeFuncB type='linear' slope='2' intercept='-0.5'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   Animated Grain (Optional)
+   ========================================================================== */
+
+/**
+ * Adds a subtle animation that shifts the grain pattern.
+ * Use sparingly - can be distracting if overused.
+ */
+
+.br-grain--animated::after {
+  animation: br-grain-shift 8s steps(10) infinite;
+}
+
+@keyframes br-grain-shift {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-2%, -2%);
+  }
+  20% {
+    transform: translate(1%, 3%);
+  }
+  30% {
+    transform: translate(-3%, 1%);
+  }
+  40% {
+    transform: translate(3%, -1%);
+  }
+  50% {
+    transform: translate(-1%, 2%);
+  }
+  60% {
+    transform: translate(2%, -3%);
+  }
+  70% {
+    transform: translate(-2%, 3%);
+  }
+  80% {
+    transform: translate(3%, 1%);
+  }
+  90% {
+    transform: translate(-1%, -2%);
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion Support
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .br-grain--animated::after {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   Utility: Grain on Specific Elements
+   ========================================================================== */
+
+/**
+ * Apply grain to specific semantic elements directly.
+ * Useful for page-level backgrounds.
+ */
+
+.br-page-grain {
+  position: relative;
+  isolation: isolate;
+}
+
+.br-page-grain::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='2' intercept='-0.5'/%3E%3CfeFuncG type='linear' slope='2' intercept='-0.5'/%3E%3CfeFuncB type='linear' slope='2' intercept='-0.5'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+  opacity: var(--br-grain-opacity-medium);
+  mix-blend-mode: var(--br-grain-blend-dark);
+}
+
+/* Ensure content sits above grain */
+.br-page-grain > * {
+  position: relative;
+  z-index: 1;
+}
+

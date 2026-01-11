@@ -1,0 +1,8 @@
+# Cursor MCP configuration (contains API tokens)
+.cursor/
+
+# OS files
+.DS_Store
+
+
+

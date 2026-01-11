@@ -1,0 +1,2429 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blue Rider Design System</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       CSS Custom Properties (Design Tokens)
+       ========================================================================== */
+
+    :root {
+      /* Font Families */
+      --br-font-family-display: 'Clash Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --br-font-family-primary: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --br-font-family-mono: 'IBM Plex Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+
+      /* Font Weights */
+      --br-font-weight-regular: 400;
+      --br-font-weight-medium: 500;
+      --br-font-weight-bold: 700;
+
+      /* Font Sizes */
+      --br-font-size-display: 56px;
+      --br-font-size-h1: 40px;
+      --br-font-size-h2: 32px;
+      --br-font-size-h3: 24px;
+      --br-font-size-h4: 20px;
+      --br-font-size-paragraph-lg: 20px;
+      --br-font-size-paragraph-md: 16px;
+      --br-font-size-paragraph-sm: 14px;
+      --br-font-size-caption: 12px;
+
+      /* Line Heights */
+      --br-line-height-display: 96px;
+      --br-line-height-h1: 48px;
+      --br-line-height-h2: 40px;
+      --br-line-height-h3: 36px;
+      --br-line-height-h4: 32px;
+      --br-line-height-paragraph-lg: 32px;
+      --br-line-height-paragraph-md: 24px;
+      --br-line-height-paragraph-sm: 22px;
+      --br-line-height-caption: 16px;
+
+      /* Colors - Base */
+      --br-color-base-white: #FFFFFF;
+      --br-color-base-black: #191D1C;
+
+      /* Colors - Primary */
+      --br-color-primary-100: #DAF4F0;
+      --br-color-primary-200: #B4EAE2;
+      --br-color-primary-400: #69D5C5;
+      --br-color-primary-default: #44CAB6;
+      --br-color-primary-600: #36A292;
+      --br-color-primary-700: #29796D;
+      --br-color-primary-800: #1B5149;
+      --br-color-primary-900: #0E2824;
+
+      /* Colors - Neutrals */
+      --br-color-neutrals-100: #E5E9E8;
+      --br-color-neutrals-200: #CCD2D1;
+      --br-color-neutrals-300: #B2BCBB;
+      --br-color-neutrals-400: #99A5A4;
+      --br-color-neutrals-default: #7F8F8D;
+      --br-color-neutrals-600: #667271;
+      --br-color-neutrals-700: #4C5655;
+      --br-color-neutrals-800: #333938;
+      --br-color-neutrals-900: #191D1C;
+
+      /* Colors - Success */
+      --br-color-success-100: #D8F7E1;
+      --br-color-success-200: #B2EFC3;
+      --br-color-success-300: #8BE6A5;
+      --br-color-success-400: #65DE87;
+      --br-color-success-default: #3ED669;
+      --br-color-success-600: #32AB54;
+      --br-color-success-700: #25803F;
+      --br-color-success-800: #19562A;
+      --br-color-success-900: #0C2B15;
+
+      /* Colors - Error */
+      --br-color-error-100: #FED8D8;
+      --br-color-error-200: #FEB1B1;
+      --br-color-error-300: #FD8B8B;
+      --br-color-error-400: #FD6464;
+      --br-color-error-default: #FC3D3D;
+      --br-color-error-600: #CA3131;
+      --br-color-error-700: #972525;
+      --br-color-error-800: #651818;
+      --br-color-error-900: #320C0C;
+
+      /* Colors - Warning */
+      --br-color-warning-100: #FFEBCC;
+      --br-color-warning-200: #FFD899;
+      --br-color-warning-300: #FFC466;
+      --br-color-warning-400: #FFB133;
+      --br-color-warning-default: #FF9D00;
+      --br-color-warning-600: #CC7E00;
+      --br-color-warning-700: #995E00;
+      --br-color-warning-800: #663F00;
+      --br-color-warning-900: #331F00;
+
+      /* Colors - Information */
+      --br-color-information-100: #CCEDFF;
+      --br-color-information-200: #99DBFF;
+      --br-color-information-300: #66C9FF;
+      --br-color-information-400: #33B8FF;
+      --br-color-information-default: #00A6FF;
+      --br-color-information-600: #0085CC;
+      --br-color-information-700: #006399;
+      --br-color-information-800: #004266;
+      --br-color-information-900: #002133;
+
+      /* Colors - Yellow */
+      --br-color-yellow-100: #FDFCDB;
+      --br-color-yellow-200: #FBF9B7;
+      --br-color-yellow-300: #F9F593;
+      --br-color-yellow-400: #F7F26F;
+      --br-color-yellow-default: #F5EF4B;
+      --br-color-yellow-600: #E7E025;
+      --br-color-yellow-700: #C8C216;
+      --br-color-yellow-800: #9E9A12;
+      --br-color-yellow-900: #6F6B0C;
+
+      /* Semantic - Label Colors (from Figma) */
+      /* Dark Theme Label Colors */
+      --br-background-informational: #006399;
+      --br-stroke-informational: #006399;
+      --br-background-success: #25803F;
+      --br-stroke-success: #25803F;
+      --br-background-error: #972525;
+      --br-stroke-error: #972525;
+      --br-background-warning: #995E00;
+      --br-stroke-warning: #995E00;
+      --br-background-secondary: #333938;
+      --br-stroke-primary: #4C5655;
+      
+      /* Light Theme Label Colors (defined in [data-theme="light"]) */
+      --br-text-information: #004266;
+      --br-icon-informational: #0085CC;
+      --br-text-success: #19562A;
+      --br-icon-success: #32AB54;
+      --br-text-error: #651818;
+      --br-icon-error: #CA3131;
+      --br-text-warning: #663F00;
+      --br-icon-warning: #CC7E00;
+      --br-text-paragraph: #333938;
+      --br-icon-primary: #333938;
+
+      /* Scale */
+      --br-scale-100: 4px;
+      --br-scale-200: 8px;
+      --br-scale-300: 12px;
+      --br-scale-400: 16px;
+      --br-scale-500: 20px;
+
+      /* Radius */
+      --br-radius-sm: 4px;
+      --br-radius-med: 8px;
+      --br-radius-round: 48px;
+
+      /* Widths */
+      --br-width-sm: 1px;
+      --br-width-med: 2px;
+
+      /* Transitions */
+      --br-transition-fast: 150ms ease-in-out;
+      --br-transition-normal: 200ms ease-in-out;
+
+      /* Semantic - Text Colors (Dark Theme) */
+      --br-text-color-heading: #E5E9E8;
+      --br-text-color-paragraph: #CCD2D1;
+      --br-text-color-caption: #B2BCBB;
+      --br-text-color-link: #44CAB6;
+      --br-text-color-link-hover: #69D5C5;
+      
+      /* Semantic - Text on Action Buttons */
+      --br-text-on-action-primary: var(--br-color-base-black);
+      --br-text-on-action-secondary: var(--br-color-primary-100);
+      --br-text-on-action-secondary-pressed: var(--br-color-primary-200);
+      --br-text-on-action-flat: var(--br-color-primary-100);
+      --br-text-on-action-flat-pressed: var(--br-color-primary-200);
+      --br-text-on-action-disabled: var(--br-color-neutrals-400);
+
+      /* Layout */
+      --sidebar-width: 260px;
+    }
+
+    /* Light Theme */
+    [data-theme="light"] {
+      --br-text-color-heading: #191D1C;
+      --br-text-color-paragraph: #333938;
+      --br-text-color-caption: #667271;
+      --br-text-color-link-hover: #36A292;
+      
+      /* Light theme button text */
+      --br-text-on-action-flat: var(--br-color-primary-900);
+      --br-text-on-action-flat-pressed: var(--br-color-primary-800);
+      
+      /* Light Theme Label Colors */
+      --br-background-informational: #CCEDFF;
+      --br-stroke-informational: #66C9FF;
+      --br-background-success: #D8F7E1;
+      --br-stroke-success: #8BE6A5;
+      --br-background-error: #FED8D8;
+      --br-stroke-error: #FD8B8B;
+      --br-background-warning: #FFEBCC;
+      --br-stroke-warning: #FFC466;
+      --br-background-secondary: #E5E9E8;
+      --br-stroke-primary: #E5E9E8;
+    }
+
+    /* ==========================================================================
+       Base Styles
+       ========================================================================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: var(--br-font-family-primary);
+      line-height: 1.5;
+      background-color: var(--br-color-base-black);
+      color: var(--br-color-base-white);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    [data-theme="light"] body {
+      background-color: var(--br-color-base-white);
+      color: var(--br-color-base-black);
+    }
+
+    /* ==========================================================================
+       Layout
+       ========================================================================== */
+
+    .app {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--br-color-neutrals-800);
+      border-right: 1px solid var(--br-color-neutrals-700);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 100;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    [data-theme="light"] .sidebar {
+      background-color: var(--br-color-neutrals-100);
+      border-right-color: var(--br-color-neutrals-200);
+    }
+
+    .sidebar-header {
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--br-color-neutrals-700);
+    }
+
+    [data-theme="light"] .sidebar-header {
+      border-bottom-color: var(--br-color-neutrals-200);
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sidebar-logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--br-color-primary-default), var(--br-color-primary-600));
+      border-radius: var(--br-radius-med);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .sidebar-logo-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--br-text-color-heading);
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 12px;
+      overflow-y: auto;
+    }
+
+    .nav-section {
+      margin-bottom: 24px;
+    }
+
+    .nav-section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--br-color-neutrals-400);
+      padding: 8px;
+      margin-bottom: 4px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--br-radius-med);
+      color: var(--br-text-color-paragraph);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--br-transition-fast);
+    }
+
+    .nav-item:hover {
+      background-color: var(--br-color-neutrals-700);
+      color: var(--br-text-color-heading);
+    }
+
+    [data-theme="light"] .nav-item:hover {
+      background-color: var(--br-color-neutrals-200);
+    }
+
+    .nav-item.active {
+      background-color: var(--br-color-primary-900);
+      color: var(--br-color-primary-default);
+    }
+
+    [data-theme="light"] .nav-item.active {
+      background-color: var(--br-color-primary-100);
+      color: var(--br-color-primary-700);
+    }
+
+    .nav-item-icon {
+      width: 20px;
+      height: 20px;
+      opacity: 0.7;
+    }
+
+    .nav-item.active .nav-item-icon {
+      opacity: 1;
+    }
+
+    /* Sidebar Footer */
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--br-color-neutrals-700);
+    }
+
+    [data-theme="light"] .sidebar-footer {
+      border-top-color: var(--br-color-neutrals-200);
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .theme-toggle-label {
+      font-size: 13px;
+      color: var(--br-text-color-caption);
+    }
+
+    .theme-toggle-switch {
+      position: relative;
+      width: 48px;
+      height: 24px;
+      background: var(--br-color-neutrals-700);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    [data-theme="light"] .theme-toggle-switch {
+      background: var(--br-color-neutrals-300);
+    }
+
+    .theme-toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: var(--br-color-primary-default);
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    [data-theme="light"] .theme-toggle-switch::after {
+      transform: translateX(24px);
+    }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      min-height: 100vh;
+    }
+
+    .main-header {
+      position: sticky;
+      top: 0;
+      background-color: var(--br-color-base-black);
+      border-bottom: 1px solid var(--br-color-neutrals-700);
+      padding: 20px 32px;
+      z-index: 50;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    [data-theme="light"] .main-header {
+      background-color: var(--br-color-base-white);
+      border-bottom-color: var(--br-color-neutrals-200);
+    }
+
+    .main-header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--br-text-color-heading);
+    }
+
+    .main-content {
+      padding: 32px;
+    }
+
+    /* Content Sections */
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: var(--br-color-primary-default);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ==========================================================================
+       Button Styles
+       ========================================================================== */
+
+    .variant-row {
+      margin-bottom: 32px;
+    }
+
+    .variant-label {
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--br-text-color-caption);
+      margin-bottom: 16px;
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .button-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .button-item span:last-child {
+      font-size: 12px;
+      color: var(--br-color-neutrals-400);
+    }
+
+    /* Button Component */
+    .br-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--br-scale-200);
+      padding: var(--br-scale-200) var(--br-scale-400);
+      min-height: 40px;
+      font-family: var(--br-font-family-primary);
+      font-size: 14px;
+      font-weight: var(--br-font-weight-medium);
+      line-height: 1.4;
+      text-decoration: none;
+      border: var(--br-width-sm) solid transparent;
+      border-radius: var(--br-radius-med);
+      cursor: pointer;
+      outline: none;
+      transition: all var(--br-transition-fast);
+      user-select: none;
+    }
+
+    .br-button:active:not(:disabled) {
+      transform: scale(0.98);
+    }
+
+    /* Ensure button text uses proper semantic variables */
+    .br-button span,
+    .br-button .br-button__icon {
+      color: inherit !important;
+    }
+
+    /* Explicitly set text colors for all button variants */
+    .br-button--primary span,
+    .br-button--primary .br-button__icon {
+      color: var(--br-text-on-action-primary) !important;
+    }
+
+    .br-button--secondary span,
+    .br-button--secondary .br-button__icon {
+      color: var(--br-text-on-action-secondary) !important;
+    }
+
+    .br-button--secondary.is-pressed span,
+    .br-button--secondary:active:not(:disabled) span {
+      color: var(--br-text-on-action-secondary-pressed) !important;
+    }
+
+    .br-button--flat span,
+    .br-button--flat .br-button__icon {
+      color: var(--br-text-on-action-flat) !important;
+    }
+
+    .br-button--flat.is-pressed span,
+    .br-button--flat:active:not(:disabled) span {
+      color: var(--br-text-on-action-flat-pressed) !important;
+    }
+
+    .br-button:disabled span,
+    .br-button:disabled .br-button__icon {
+      color: var(--br-text-on-action-disabled) !important;
+    }
+
+    .br-button--icon-only {
+      padding: var(--br-scale-200);
+      min-width: 40px;
+      width: 40px;
+      height: 40px;
+    }
+
+    .br-button__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .br-button__icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Primary Button */
+    .br-button--primary {
+      background-color: var(--br-color-primary-default);
+      border-color: var(--br-color-primary-default);
+      color: var(--br-text-on-action-primary);
+    }
+
+    .br-button--primary:hover:not(:disabled),
+    .br-button--primary.is-hover {
+      background-color: var(--br-color-primary-400);
+      border-color: var(--br-color-primary-400);
+    }
+
+    .br-button--primary:active:not(:disabled),
+    .br-button--primary.is-pressed {
+      background-color: var(--br-color-primary-600);
+      border-color: var(--br-color-primary-600);
+    }
+
+    .br-button--primary:focus-visible,
+    .br-button--primary.is-focused {
+      box-shadow: 0 0 0 2px var(--br-color-base-black), 0 0 0 4px var(--br-color-primary-default);
+    }
+
+    [data-theme="light"] .br-button--primary:focus-visible,
+    [data-theme="light"] .br-button--primary.is-focused {
+      box-shadow: 0 0 0 2px var(--br-color-base-white), 0 0 0 4px var(--br-color-primary-default);
+    }
+
+    .br-button--primary:disabled {
+      background-color: var(--br-color-neutrals-800);
+      border-color: var(--br-color-neutrals-800);
+      color: var(--br-text-on-action-disabled);
+      cursor: not-allowed;
+    }
+
+    [data-theme="light"] .br-button--primary:disabled {
+      background-color: var(--br-color-neutrals-100);
+      border-color: var(--br-color-neutrals-100);
+    }
+
+    /* Secondary Button */
+    .br-button--secondary {
+      background-color: var(--br-color-primary-900);
+      border-color: var(--br-color-primary-900);
+      color: var(--br-text-on-action-secondary);
+    }
+
+    .br-button--secondary:hover:not(:disabled),
+    .br-button--secondary.is-hover {
+      border-color: var(--br-color-primary-800);
+      color: var(--br-text-on-action-secondary);
+    }
+
+    .br-button--secondary:active:not(:disabled),
+    .br-button--secondary.is-pressed {
+      border-color: var(--br-color-primary-800);
+      color: var(--br-text-on-action-secondary-pressed);
+    }
+
+    .br-button--secondary:focus-visible,
+    .br-button--secondary.is-focused {
+      box-shadow: 0 0 0 2px var(--br-color-base-black), 0 0 0 4px var(--br-color-primary-default);
+    }
+
+    [data-theme="light"] .br-button--secondary:focus-visible,
+    [data-theme="light"] .br-button--secondary.is-focused {
+      box-shadow: 0 0 0 2px var(--br-color-base-white), 0 0 0 4px var(--br-color-primary-default);
+    }
+
+    .br-button--secondary:disabled {
+      background-color: var(--br-color-neutrals-800);
+      border-color: var(--br-color-neutrals-800);
+      color: var(--br-text-on-action-disabled);
+      cursor: not-allowed;
+    }
+
+    [data-theme="light"] .br-button--secondary:disabled {
+      background-color: var(--br-color-neutrals-100);
+      border-color: var(--br-color-neutrals-100);
+    }
+
+    /* Flat Button */
+    .br-button--flat {
+      background-color: transparent;
+      border-color: transparent;
+      color: var(--br-text-on-action-flat);
+    }
+
+    .br-button--flat:hover:not(:disabled),
+    .br-button--flat.is-hover {
+      border-color: var(--br-color-primary-800);
+      color: var(--br-text-on-action-flat);
+    }
+
+    .br-button--flat:active:not(:disabled),
+    .br-button--flat.is-pressed {
+      border-color: var(--br-color-primary-800);
+      color: var(--br-text-on-action-flat-pressed);
+    }
+
+    .br-button--flat:focus-visible,
+    .br-button--flat.is-focused {
+      border-color: var(--br-color-primary-default);
+      box-shadow: 0 0 0 2px var(--br-color-base-black), 0 0 0 4px var(--br-color-primary-default);
+    }
+
+    [data-theme="light"] .br-button--flat:focus-visible,
+    [data-theme="light"] .br-button--flat.is-focused {
+      box-shadow: 0 0 0 2px var(--br-color-base-white), 0 0 0 4px var(--br-color-primary-default);
+    }
+
+    .br-button--flat:disabled {
+      color: var(--br-text-on-action-disabled);
+      cursor: not-allowed;
+    }
+
+    /* Loading Spinner */
+    .br-button__spinner-icon {
+      width: 20px;
+      height: 20px;
+      animation: br-spin 1s linear infinite;
+    }
+
+    @keyframes br-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ==========================================================================
+       Typography Styles
+       ========================================================================== */
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 24px;
+      align-items: baseline;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--br-color-neutrals-800);
+    }
+
+    [data-theme="light"] .type-row {
+      border-bottom-color: var(--br-color-neutrals-100);
+    }
+
+    .type-row:last-child {
+      border-bottom: none;
+    }
+
+    .type-meta {
+      font-size: 12px;
+      color: var(--br-color-neutrals-300);
+    }
+
+    [data-theme="light"] .type-meta {
+      color: var(--br-color-neutrals-600);
+    }
+
+    .type-meta .name {
+      font-weight: 700;
+      color: var(--br-text-color-paragraph);
+      margin-bottom: 4px;
+    }
+
+    .type-meta .specs {
+      line-height: 1.6;
+    }
+
+    /* Typography Classes */
+    .br-heading-display {
+      font-family: var(--br-font-family-display);
+      font-size: var(--br-font-size-display);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-display);
+      color: var(--br-text-color-heading);
+    }
+
+    .br-h1 {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-h1);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-h1);
+      color: var(--br-text-color-heading);
+    }
+
+    .br-h2 {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-h2);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-h2);
+      color: var(--br-text-color-heading);
+    }
+
+    .br-h3 {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-h3);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-h3);
+      color: var(--br-text-color-heading);
+    }
+
+    .br-h4 {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-h4);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-h4);
+      color: var(--br-text-color-heading);
+    }
+
+    .br-paragraph-bold-lg {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-lg);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-lg);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-paragraph-bold-md {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-md);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-md);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-paragraph-lg {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-lg);
+      font-weight: var(--br-font-weight-regular);
+      line-height: var(--br-line-height-paragraph-lg);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-paragraph-md {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-md);
+      font-weight: var(--br-font-weight-regular);
+      line-height: var(--br-line-height-paragraph-md);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-paragraph-sm {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-sm);
+      font-weight: var(--br-font-weight-regular);
+      line-height: var(--br-line-height-paragraph-sm);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-caption {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-caption);
+      font-weight: var(--br-font-weight-regular);
+      line-height: var(--br-line-height-caption);
+      color: var(--br-text-color-caption);
+    }
+
+    .br-link-lg {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-lg);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-lg);
+      color: var(--br-text-color-link);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .br-link-md {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-md);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-md);
+      color: var(--br-text-color-link);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .br-link-sm {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-sm);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-sm);
+      color: var(--br-text-color-link);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .br-link-caption {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-caption);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-caption);
+      color: var(--br-text-color-link);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .br-mono-bold-lg {
+      font-family: var(--br-font-family-mono);
+      font-size: var(--br-font-size-paragraph-lg);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-lg);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-mono-bold-md {
+      font-family: var(--br-font-family-mono);
+      font-size: var(--br-font-size-paragraph-md);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-md);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-mono-bold-sm {
+      font-family: var(--br-font-family-mono);
+      font-size: var(--br-font-size-paragraph-sm);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-sm);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-mono-lg {
+      font-family: var(--br-font-family-mono);
+      font-size: var(--br-font-size-paragraph-lg);
+      font-weight: var(--br-font-weight-regular);
+      line-height: var(--br-line-height-paragraph-lg);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-mono-md {
+      font-family: var(--br-font-family-mono);
+      font-size: var(--br-font-size-paragraph-md);
+      font-weight: var(--br-font-weight-regular);
+      line-height: var(--br-line-height-paragraph-md);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-mono-sm {
+      font-family: var(--br-font-family-mono);
+      font-size: var(--br-font-size-paragraph-sm);
+      font-weight: var(--br-font-weight-regular);
+      line-height: var(--br-line-height-paragraph-sm);
+      color: var(--br-text-color-paragraph);
+    }
+
+    /* ==========================================================================
+       Colors Section
+       ========================================================================== */
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 16px;
+    }
+
+    .color-swatch {
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--br-radius-med);
+      overflow: hidden;
+      background: var(--br-color-neutrals-800);
+    }
+
+    [data-theme="light"] .color-swatch {
+      background: var(--br-color-neutrals-100);
+    }
+
+    .color-swatch-preview {
+      height: 64px;
+    }
+
+    .color-swatch-info {
+      padding: 12px;
+    }
+
+    .color-swatch-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--br-text-color-heading);
+      margin-bottom: 4px;
+    }
+
+    .color-swatch-value {
+      font-family: var(--br-font-family-mono);
+      font-size: 11px;
+      color: var(--br-text-color-caption);
+    }
+
+    /* ==========================================================================
+       Label Component Styles (Matching Figma exactly)
+       ========================================================================== */
+
+    /* Base Label Styles */
+    .br-label {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px;
+      gap: 10px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      /* Paragraph/Bold/Medium typography */
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-md);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-md);
+      white-space: nowrap;
+    }
+
+    /* Label Icon */
+    .br-label__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .br-label__icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+    }
+
+    /* ==========================================================================
+       Label Variants - Using Figma semantic tokens
+       Both themes use the same variable names, values change per theme
+       ========================================================================== */
+
+    /* Information Label */
+    .br-label--information {
+      background-color: var(--br-background-informational);
+      border-color: var(--br-stroke-informational);
+      color: var(--br-color-base-white);
+    }
+
+    .br-label--information .br-label__icon {
+      color: var(--br-color-information-200);
+    }
+
+    /* Success Label */
+    .br-label--success {
+      background-color: var(--br-background-success);
+      border-color: var(--br-stroke-success);
+      color: var(--br-color-base-white);
+    }
+
+    .br-label--success .br-label__icon {
+      color: var(--br-color-success-200);
+    }
+
+    /* Error Label */
+    .br-label--error {
+      background-color: var(--br-background-error);
+      border-color: var(--br-stroke-error);
+      color: var(--br-color-base-white);
+    }
+
+    .br-label--error .br-label__icon {
+      color: var(--br-color-error-200);
+    }
+
+    /* Warning Label */
+    .br-label--warning {
+      background-color: var(--br-background-warning);
+      border-color: var(--br-stroke-warning);
+      color: var(--br-color-base-white);
+    }
+
+    .br-label--warning .br-label__icon {
+      color: var(--br-color-warning-200);
+    }
+
+    /* Neutral Label */
+    .br-label--neutral {
+      background-color: var(--br-background-secondary);
+      border-color: var(--br-stroke-primary);
+      color: var(--br-color-base-white);
+    }
+
+    .br-label--neutral .br-label__icon {
+      color: var(--br-color-neutrals-300);
+    }
+
+    /* ==========================================================================
+       Light Theme - Text and icon color overrides
+       ========================================================================== */
+
+    [data-theme="light"] .br-label--information {
+      border-color: transparent;
+      color: var(--br-text-information);
+    }
+
+    [data-theme="light"] .br-label--information .br-label__icon {
+      color: var(--br-icon-informational);
+    }
+
+    [data-theme="light"] .br-label--success {
+      border-color: transparent;
+      color: var(--br-text-success);
+    }
+
+    [data-theme="light"] .br-label--success .br-label__icon {
+      color: var(--br-icon-success);
+    }
+
+    [data-theme="light"] .br-label--error {
+      border-color: transparent;
+      color: var(--br-text-error);
+    }
+
+    [data-theme="light"] .br-label--error .br-label__icon {
+      color: var(--br-icon-error);
+    }
+
+    [data-theme="light"] .br-label--warning {
+      border-color: transparent;
+      color: var(--br-text-warning);
+    }
+
+    [data-theme="light"] .br-label--warning .br-label__icon {
+      color: var(--br-icon-warning);
+    }
+
+    [data-theme="light"] .br-label--neutral {
+      border-color: transparent;
+      color: var(--br-text-paragraph);
+    }
+
+    [data-theme="light"] .br-label--neutral .br-label__icon {
+      color: var(--br-icon-primary);
+    }
+
+    /* Label Sizes */
+    .br-label--sm {
+      padding: 2px 8px;
+      font-size: 12px;
+      gap: 4px;
+    }
+
+    .br-label--sm .br-label__icon {
+      width: 12px;
+      height: 12px;
+    }
+
+    .br-label--lg {
+      padding: 6px 16px;
+      font-size: 16px;
+      gap: 8px;
+    }
+
+    .br-label--lg .br-label__icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Label Demo Grid */
+    .label-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .label-demo {
+      background: var(--br-color-neutrals-800);
+      border-radius: var(--br-radius-med);
+      padding: 20px;
+    }
+
+    [data-theme="light"] .label-demo {
+      background: var(--br-color-neutrals-100);
+    }
+
+    .label-demo-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--br-text-color-heading);
+      margin-bottom: 16px;
+    }
+
+    .label-demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    /* Label Size Demo */
+    .label-size-demo {
+      margin-top: 24px;
+    }
+
+    .label-size-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      align-items: flex-end;
+    }
+
+    .label-size-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .label-size-name {
+      font-size: 12px;
+      color: var(--br-text-color-caption);
+    }
+
+    /* All Variants Demo */
+    .label-all-variants {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    /* Label Showcase - matching Figma layout */
+    .label-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+      max-width: 200px;
+    }
+
+    .label-showcase .br-label {
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-icon">🎨</div>
+          <span class="sidebar-logo-text">Blue Rider DS</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Foundations</div>
+          <div class="nav-item" data-section="colors">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a10 10 0 0 1 0 20"></path>
+            </svg>
+            Colors
+          </div>
+          <div class="nav-item active" data-section="typography">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="4 7 4 4 20 4 20 7"></polyline>
+              <line x1="9" y1="20" x2="15" y2="20"></line>
+              <line x1="12" y1="4" x2="12" y2="20"></line>
+            </svg>
+            Typography
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Components</div>
+          <div class="nav-item" data-section="buttons">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="8" width="18" height="8" rx="2"></rect>
+            </svg>
+            Buttons
+          </div>
+          <div class="nav-item" data-section="labels">
+            <svg class="nav-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+              <line x1="7" y1="7" x2="7.01" y2="7"></line>
+            </svg>
+            Labels
+          </div>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="theme-toggle">
+          <span class="theme-toggle-label">Theme</span>
+          <div class="theme-toggle-switch" id="themeToggle" role="button" tabindex="0" aria-label="Toggle theme"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <header class="main-header">
+        <h1 id="pageTitle">Typography</h1>
+      </header>
+
+      <div class="main-content">
+        <!-- Colors Section -->
+        <div class="content-section" id="colors">
+          <!-- Base Colors -->
+          <section class="section">
+            <h2 class="section-title">Base Colors</h2>
+            <div class="color-grid">
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #FFFFFF; border: 1px solid #333938;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">White</div>
+                  <div class="color-swatch-value">#FFFFFF</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #191D1C;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Black</div>
+                  <div class="color-swatch-value">#191D1C</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Primary Colors -->
+          <section class="section">
+            <h2 class="section-title">Primary Colors</h2>
+            <div class="color-grid">
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #DAF4F0;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Primary 100</div>
+                  <div class="color-swatch-value">#DAF4F0</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #B4EAE2;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Primary 200</div>
+                  <div class="color-swatch-value">#B4EAE2</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #8FDFD3;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Primary 300</div>
+                  <div class="color-swatch-value">#8FDFD3</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #69D5C5;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Primary 400</div>
+                  <div class="color-swatch-value">#69D5C5</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #44CAB6;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Primary Default</div>
+                  <div class="color-swatch-value">#44CAB6</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #36A292;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Primary 600</div>
+                  <div class="color-swatch-value">#36A292</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #29796D;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Primary 700</div>
+                  <div class="color-swatch-value">#29796D</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #1B5149;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Primary 800</div>
+                  <div class="color-swatch-value">#1B5149</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #0E2824;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Primary 900</div>
+                  <div class="color-swatch-value">#0E2824</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Success Colors -->
+          <section class="section">
+            <h2 class="section-title">Success Colors</h2>
+            <div class="color-grid">
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #D8F7E1;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Success 100</div>
+                  <div class="color-swatch-value">#D8F7E1</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #B2EFC3;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Success 200</div>
+                  <div class="color-swatch-value">#B2EFC3</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #8BE6A5;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Success 300</div>
+                  <div class="color-swatch-value">#8BE6A5</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #65DE87;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Success 400</div>
+                  <div class="color-swatch-value">#65DE87</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #3ED669;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Success Default</div>
+                  <div class="color-swatch-value">#3ED669</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #32AB54;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Success 600</div>
+                  <div class="color-swatch-value">#32AB54</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #25803F;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Success 700</div>
+                  <div class="color-swatch-value">#25803F</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #19562A;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Success 800</div>
+                  <div class="color-swatch-value">#19562A</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #0C2B15;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Success 900</div>
+                  <div class="color-swatch-value">#0C2B15</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Error Colors -->
+          <section class="section">
+            <h2 class="section-title">Error Colors</h2>
+            <div class="color-grid">
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #FED8D8;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Error 100</div>
+                  <div class="color-swatch-value">#FED8D8</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #FEB1B1;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Error 200</div>
+                  <div class="color-swatch-value">#FEB1B1</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #FD8B8B;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Error 300</div>
+                  <div class="color-swatch-value">#FD8B8B</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #FD6464;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Error 400</div>
+                  <div class="color-swatch-value">#FD6464</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #FC3D3D;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Error Default</div>
+                  <div class="color-swatch-value">#FC3D3D</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #CA3131;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Error 600</div>
+                  <div class="color-swatch-value">#CA3131</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #972525;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Error 700</div>
+                  <div class="color-swatch-value">#972525</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #651818;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Error 800</div>
+                  <div class="color-swatch-value">#651818</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #320C0C;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Error 900</div>
+                  <div class="color-swatch-value">#320C0C</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Warning Colors -->
+          <section class="section">
+            <h2 class="section-title">Warning Colors</h2>
+            <div class="color-grid">
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #FFEBCC;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Warning 100</div>
+                  <div class="color-swatch-value">#FFEBCC</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #FFD899;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Warning 200</div>
+                  <div class="color-swatch-value">#FFD899</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #FFC466;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Warning 300</div>
+                  <div class="color-swatch-value">#FFC466</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #FFB133;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Warning 400</div>
+                  <div class="color-swatch-value">#FFB133</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #FF9D00;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Warning Default</div>
+                  <div class="color-swatch-value">#FF9D00</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #CC7E00;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Warning 600</div>
+                  <div class="color-swatch-value">#CC7E00</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #995E00;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Warning 700</div>
+                  <div class="color-swatch-value">#995E00</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #663F00;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Warning 800</div>
+                  <div class="color-swatch-value">#663F00</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #331F00;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Warning 900</div>
+                  <div class="color-swatch-value">#331F00</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Information Colors -->
+          <section class="section">
+            <h2 class="section-title">Information Colors</h2>
+            <div class="color-grid">
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #CCEDFF;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Information 100</div>
+                  <div class="color-swatch-value">#CCEDFF</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #99DBFF;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Information 200</div>
+                  <div class="color-swatch-value">#99DBFF</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #66C9FF;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Information 300</div>
+                  <div class="color-swatch-value">#66C9FF</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #33B8FF;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Information 400</div>
+                  <div class="color-swatch-value">#33B8FF</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #00A6FF;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Information Default</div>
+                  <div class="color-swatch-value">#00A6FF</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #0085CC;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Information 600</div>
+                  <div class="color-swatch-value">#0085CC</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #006399;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Information 700</div>
+                  <div class="color-swatch-value">#006399</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #004266;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Information 800</div>
+                  <div class="color-swatch-value">#004266</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #002133;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Information 900</div>
+                  <div class="color-swatch-value">#002133</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Yellow Colors -->
+          <section class="section">
+            <h2 class="section-title">Yellow Colors</h2>
+            <div class="color-grid">
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #FDFCDB;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Yellow 100</div>
+                  <div class="color-swatch-value">#FDFCDB</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #FBF9B7;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Yellow 200</div>
+                  <div class="color-swatch-value">#FBF9B7</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #F9F593;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Yellow 300</div>
+                  <div class="color-swatch-value">#F9F593</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #F7F26F;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Yellow 400</div>
+                  <div class="color-swatch-value">#F7F26F</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #F5EF4B;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Yellow Default</div>
+                  <div class="color-swatch-value">#F5EF4B</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #E7E025;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Yellow 600</div>
+                  <div class="color-swatch-value">#E7E025</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #C8C216;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Yellow 700</div>
+                  <div class="color-swatch-value">#C8C216</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #9E9A12;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Yellow 800</div>
+                  <div class="color-swatch-value">#9E9A12</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #6F6B0C;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Yellow 900</div>
+                  <div class="color-swatch-value">#6F6B0C</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Neutral Colors -->
+          <section class="section">
+            <h2 class="section-title">Neutral Colors</h2>
+            <div class="color-grid">
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #E5E9E8;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Neutrals 100</div>
+                  <div class="color-swatch-value">#E5E9E8</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #CCD2D1;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Neutrals 200</div>
+                  <div class="color-swatch-value">#CCD2D1</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #B2BCBB;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Neutrals 300</div>
+                  <div class="color-swatch-value">#B2BCBB</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #99A5A4;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Neutrals 400</div>
+                  <div class="color-swatch-value">#99A5A4</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #7F8F8D;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Neutrals Default</div>
+                  <div class="color-swatch-value">#7F8F8D</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #667271;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Neutrals 600</div>
+                  <div class="color-swatch-value">#667271</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #4C5655;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Neutrals 700</div>
+                  <div class="color-swatch-value">#4C5655</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #333938;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Neutrals 800</div>
+                  <div class="color-swatch-value">#333938</div>
+                </div>
+              </div>
+              <div class="color-swatch">
+                <div class="color-swatch-preview" style="background-color: #191D1C;"></div>
+                <div class="color-swatch-info">
+                  <div class="color-swatch-name">Neutrals 900</div>
+                  <div class="color-swatch-value">#191D1C</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Typography Section -->
+        <div class="content-section active" id="typography">
+          <section class="section">
+            <h2 class="section-title">Headings</h2>
+            
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Display H1</div>
+                <div class="specs">Clash Grotesk Bold<br>56px / 96px</div>
+              </div>
+              <div class="br-heading-display">Display H1</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Heading One</div>
+                <div class="specs">Instrument Sans Bold<br>40px / 48px</div>
+              </div>
+              <div class="br-h1">Heading One</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Heading Two</div>
+                <div class="specs">Instrument Sans Bold<br>32px / 40px</div>
+              </div>
+              <div class="br-h2">Heading Two</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Heading Three</div>
+                <div class="specs">Instrument Sans Bold<br>24px / 36px</div>
+              </div>
+              <div class="br-h3">Heading Three</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Heading Four</div>
+                <div class="specs">Instrument Sans Bold<br>20px / 32px</div>
+              </div>
+              <div class="br-h4">Heading Four</div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-title">Paragraph</h2>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Paragraph / Bold / Large</div>
+                <div class="specs">Instrument Sans Bold<br>20px / 32px</div>
+              </div>
+              <div class="br-paragraph-bold-lg">Paragraph / Bold / Large</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Paragraph / Bold / Medium</div>
+                <div class="specs">Instrument Sans Bold<br>16px / 24px</div>
+              </div>
+              <div class="br-paragraph-bold-md">Paragraph / Bold / Medium</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Paragraph / Regular / Large</div>
+                <div class="specs">Instrument Sans Regular<br>20px / 32px</div>
+              </div>
+              <div class="br-paragraph-lg">Paragraph / Regular / Large</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Paragraph / Regular / Medium</div>
+                <div class="specs">Instrument Sans Regular<br>16px / 24px</div>
+              </div>
+              <div class="br-paragraph-md">Paragraph / Regular / Medium</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Paragraph / Regular / Small</div>
+                <div class="specs">Instrument Sans Regular<br>14px / 22px</div>
+              </div>
+              <div class="br-paragraph-sm">Paragraph / Regular / Small</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Caption</div>
+                <div class="specs">Instrument Sans Regular<br>12px / 16px</div>
+              </div>
+              <div class="br-caption">Caption</div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-title">Links</h2>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Link / Large</div>
+                <div class="specs">Instrument Sans Bold<br>20px / 32px / Underline</div>
+              </div>
+              <div class="br-link-lg">Paragraph / Link / Large</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Link / Medium</div>
+                <div class="specs">Instrument Sans Bold<br>16px / 24px / Underline</div>
+              </div>
+              <div class="br-link-md">Paragraph / Link / Medium</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Link / Small</div>
+                <div class="specs">Instrument Sans Bold<br>14px / 22px / Underline</div>
+              </div>
+              <div class="br-link-sm">Paragraph / Link / Small</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Link / Caption</div>
+                <div class="specs">Instrument Sans Bold<br>12px / 16px / Underline</div>
+              </div>
+              <div class="br-link-caption">Paragraph / Link / Caption</div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-title">Mono</h2>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Mono / Bold / Large</div>
+                <div class="specs">IBM Plex Mono Bold<br>20px / 32px</div>
+              </div>
+              <div class="br-mono-bold-lg">Mono / Bold / Large</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Mono / Bold / Medium</div>
+                <div class="specs">IBM Plex Mono Bold<br>16px / 24px</div>
+              </div>
+              <div class="br-mono-bold-md">Mono / Bold / Medium</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Mono / Regular / Large</div>
+                <div class="specs">IBM Plex Mono Regular<br>20px / 32px</div>
+              </div>
+              <div class="br-mono-lg">Mono / Regular / Large</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Mono / Regular / Medium</div>
+                <div class="specs">IBM Plex Mono Regular<br>16px / 24px</div>
+              </div>
+              <div class="br-mono-md">Mono / Regular / Medium</div>
+            </div>
+
+            <div class="type-row">
+              <div class="type-meta">
+                <div class="name">Mono / Regular / Small</div>
+                <div class="specs">IBM Plex Mono Regular<br>14px / 22px</div>
+              </div>
+              <div class="br-mono-sm">Mono / Regular / Small</div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="content-section" id="buttons">
+          <section class="section">
+            <h2 class="section-title">Text Buttons</h2>
+            
+            <!-- Primary -->
+            <div class="variant-row">
+              <div class="variant-label">Primary</div>
+              <div class="button-group">
+                <div class="button-item">
+                  <button class="br-button br-button--primary"><span>Button</span></button>
+                  <span>Default</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--primary is-hover"><span>Button</span></button>
+                  <span>Hover</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--primary is-pressed"><span>Button</span></button>
+                  <span>Pressed</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--primary is-focused"><span>Button</span></button>
+                  <span>Focus</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--primary" disabled><span>Button</span></button>
+                  <span>Disabled</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Secondary -->
+            <div class="variant-row">
+              <div class="variant-label">Secondary</div>
+              <div class="button-group">
+                <div class="button-item">
+                  <button class="br-button br-button--secondary"><span>Button</span></button>
+                  <span>Default</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--secondary is-hover"><span>Button</span></button>
+                  <span>Hover</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--secondary is-pressed"><span>Button</span></button>
+                  <span>Pressed</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--secondary is-focused"><span>Button</span></button>
+                  <span>Focus</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--secondary" disabled><span>Button</span></button>
+                  <span>Disabled</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flat -->
+            <div class="variant-row">
+              <div class="variant-label">Flat</div>
+              <div class="button-group">
+                <div class="button-item">
+                  <button class="br-button br-button--flat"><span>Button</span></button>
+                  <span>Default</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--flat is-hover"><span>Button</span></button>
+                  <span>Hover</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--flat is-pressed"><span>Button</span></button>
+                  <span>Pressed</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--flat is-focused"><span>Button</span></button>
+                  <span>Focus</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--flat" disabled><span>Button</span></button>
+                  <span>Disabled</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-title">Icon Buttons</h2>
+            
+            <!-- Primary Icon -->
+            <div class="variant-row">
+              <div class="variant-label">Primary</div>
+              <div class="button-group">
+                <div class="button-item">
+                  <button class="br-button br-button--primary br-button--icon-only">
+                    <span class="br-button__icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                      </svg>
+                    </span>
+                  </button>
+                  <span>Default</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--primary br-button--icon-only is-hover">
+                    <span class="br-button__icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </span>
+                  </button>
+                  <span>Hover</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--primary br-button--icon-only is-focused">
+                    <span class="br-button__icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                  </button>
+                  <span>Focus</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--primary br-button--icon-only" disabled>
+                    <span class="br-button__icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </span>
+                  </button>
+                  <span>Disabled</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Secondary Icon -->
+            <div class="variant-row">
+              <div class="variant-label">Secondary</div>
+              <div class="button-group">
+                <div class="button-item">
+                  <button class="br-button br-button--secondary br-button--icon-only">
+                    <span class="br-button__icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </span>
+                  </button>
+                  <span>Default</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--secondary br-button--icon-only is-hover">
+                    <span class="br-button__icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </span>
+                  </button>
+                  <span>Hover</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--secondary br-button--icon-only is-focused">
+                    <span class="br-button__icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </span>
+                  </button>
+                  <span>Focus</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--secondary br-button--icon-only" disabled>
+                    <span class="br-button__icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </span>
+                  </button>
+                  <span>Disabled</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flat Icon -->
+            <div class="variant-row">
+              <div class="variant-label">Flat</div>
+              <div class="button-group">
+                <div class="button-item">
+                  <button class="br-button br-button--flat br-button--icon-only">
+                    <span class="br-button__icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </span>
+                  </button>
+                  <span>Default</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--flat br-button--icon-only is-hover">
+                    <span class="br-button__icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </span>
+                  </button>
+                  <span>Hover</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--flat br-button--icon-only is-focused">
+                    <span class="br-button__icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </span>
+                  </button>
+                  <span>Focus</span>
+                </div>
+                <div class="button-item">
+                  <button class="br-button br-button--flat br-button--icon-only" disabled>
+                    <span class="br-button__icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </span>
+                  </button>
+                  <span>Disabled</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-title">Buttons with Icons</h2>
+            
+            <div class="variant-row">
+              <div class="variant-label">Icon Left</div>
+              <div class="button-group">
+                <button class="br-button br-button--primary">
+                  <span class="br-button__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  </span>
+                  <span>Add New</span>
+                </button>
+                <button class="br-button br-button--secondary">
+                  <span class="br-button__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                  </span>
+                  <span>Settings</span>
+                </button>
+                <button class="br-button br-button--flat">
+                  <span class="br-button__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </span>
+                  <span>Back</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="variant-row">
+              <div class="variant-label">Icon Right</div>
+              <div class="button-group">
+                <button class="br-button br-button--primary">
+                  <span>Continue</span>
+                  <span class="br-button__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </span>
+                </button>
+                <button class="br-button br-button--secondary">
+                  <span>Next Step</span>
+                  <span class="br-button__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </span>
+                </button>
+                <button class="br-button br-button--flat">
+                  <span>Learn More</span>
+                  <span class="br-button__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-title">Loading State</h2>
+            <div class="button-group">
+              <button class="br-button br-button--primary" disabled>
+                <svg class="br-button__spinner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                  <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+                </svg>
+                <span>Loading...</span>
+              </button>
+              <button class="br-button br-button--secondary" disabled>
+                <svg class="br-button__spinner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                  <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+                </svg>
+                <span>Processing...</span>
+              </button>
+              <button class="br-button br-button--flat" disabled>
+                <svg class="br-button__spinner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                  <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+                </svg>
+                <span>Please wait...</span>
+              </button>
+            </div>
+          </section>
+        </div>
+
+        <!-- Labels Section -->
+        <div class="content-section" id="labels">
+          <section class="section">
+            <h2 class="section-title">Label Variants</h2>
+            <p class="section-description">Labels are used to highlight and categorize information. Each variant conveys a different semantic meaning.</p>
+            
+            <div class="label-showcase">
+              <!-- Information Label -->
+              <span class="br-label br-label--information">
+                <span class="br-label__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L4 6.5V10.5L12 15L20 10.5V6.5L12 2Z"></path>
+                    <path d="M4 10.5V17.5L12 22L20 17.5V10.5"></path>
+                    <path d="M12 15V22"></path>
+                  </svg>
+                </span>
+                <span>Info</span>
+                <span class="br-label__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L4 6.5V10.5L12 15L20 10.5V6.5L12 2Z"></path>
+                    <path d="M4 10.5V17.5L12 22L20 17.5V10.5"></path>
+                    <path d="M12 15V22"></path>
+                  </svg>
+                </span>
+              </span>
+
+              <!-- Success Label -->
+              <span class="br-label br-label--success">
+                <span class="br-label__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L4 6.5V10.5L12 15L20 10.5V6.5L12 2Z"></path>
+                    <path d="M4 10.5V17.5L12 22L20 17.5V10.5"></path>
+                    <path d="M12 15V22"></path>
+                  </svg>
+                </span>
+                <span>Info</span>
+                <span class="br-label__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L4 6.5V10.5L12 15L20 10.5V6.5L12 2Z"></path>
+                    <path d="M4 10.5V17.5L12 22L20 17.5V10.5"></path>
+                    <path d="M12 15V22"></path>
+                  </svg>
+                </span>
+              </span>
+
+              <!-- Error Label -->
+              <span class="br-label br-label--error">
+                <span class="br-label__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L4 6.5V10.5L12 15L20 10.5V6.5L12 2Z"></path>
+                    <path d="M4 10.5V17.5L12 22L20 17.5V10.5"></path>
+                    <path d="M12 15V22"></path>
+                  </svg>
+                </span>
+                <span>Info</span>
+                <span class="br-label__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L4 6.5V10.5L12 15L20 10.5V6.5L12 2Z"></path>
+                    <path d="M4 10.5V17.5L12 22L20 17.5V10.5"></path>
+                    <path d="M12 15V22"></path>
+                  </svg>
+                </span>
+              </span>
+
+              <!-- Warning Label -->
+              <span class="br-label br-label--warning">
+                <span class="br-label__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L4 6.5V10.5L12 15L20 10.5V6.5L12 2Z"></path>
+                    <path d="M4 10.5V17.5L12 22L20 17.5V10.5"></path>
+                    <path d="M12 15V22"></path>
+                  </svg>
+                </span>
+                <span>Info</span>
+                <span class="br-label__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L4 6.5V10.5L12 15L20 10.5V6.5L12 2Z"></path>
+                    <path d="M4 10.5V17.5L12 22L20 17.5V10.5"></path>
+                    <path d="M12 15V22"></path>
+                  </svg>
+                </span>
+              </span>
+
+              <!-- Neutral Label -->
+              <span class="br-label br-label--neutral">
+                <span class="br-label__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L4 6.5V10.5L12 15L20 10.5V6.5L12 2Z"></path>
+                    <path d="M4 10.5V17.5L12 22L20 17.5V10.5"></path>
+                    <path d="M12 15V22"></path>
+                  </svg>
+                </span>
+                <span>Info</span>
+                <span class="br-label__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L4 6.5V10.5L12 15L20 10.5V6.5L12 2Z"></path>
+                    <path d="M4 10.5V17.5L12 22L20 17.5V10.5"></path>
+                    <path d="M12 15V22"></path>
+                  </svg>
+                </span>
+              </span>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Navigation
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('.content-section');
+    const pageTitle = document.getElementById('pageTitle');
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const sectionId = item.dataset.section;
+        
+        // Update active nav item
+        navItems.forEach(nav => nav.classList.remove('active'));
+        item.classList.add('active');
+        
+        // Update active section
+        sections.forEach(section => section.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+        
+        // Update page title
+        pageTitle.textContent = item.textContent.trim();
+      });
+    });
+
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+    });
+    
+    themeToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        themeToggle.click();
+      }
+    });
+  </script>
+</body>
+</html>

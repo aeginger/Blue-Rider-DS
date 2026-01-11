@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blue Rider DS - Typography Preview</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Clash Grotesk (if available via CDN, otherwise use fallback) -->
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       CSS Custom Properties (Typography Tokens)
+       ========================================================================== */
+
+    :root {
+      /* Font Families */
+      --br-font-family-display: 'Clash Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --br-font-family-primary: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --br-font-family-mono: 'IBM Plex Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+
+      /* Font Weights */
+      --br-font-weight-regular: 400;
+      --br-font-weight-medium: 500;
+      --br-font-weight-bold: 700;
+
+      /* Font Sizes */
+      --br-font-size-display: 56px;
+      --br-font-size-h1: 40px;
+      --br-font-size-h2: 32px;
+      --br-font-size-h3: 24px;
+      --br-font-size-h4: 20px;
+      --br-font-size-paragraph-lg: 20px;
+      --br-font-size-paragraph-md: 16px;
+      --br-font-size-paragraph-sm: 14px;
+      --br-font-size-caption: 12px;
+
+      /* Line Heights */
+      --br-line-height-display: 96px;
+      --br-line-height-h1: 48px;
+      --br-line-height-h2: 40px;
+      --br-line-height-h3: 36px;
+      --br-line-height-h4: 32px;
+      --br-line-height-paragraph-lg: 32px;
+      --br-line-height-paragraph-md: 24px;
+      --br-line-height-paragraph-sm: 22px;
+      --br-line-height-caption: 16px;
+
+      /* Colors */
+      --br-color-base-white: #FFFFFF;
+      --br-color-base-black: #191D1C;
+      --br-color-primary-default: #44CAB6;
+      --br-color-primary-400: #69D5C5;
+      --br-color-primary-600: #36A292;
+      --br-color-neutrals-100: #E5E9E8;
+      --br-color-neutrals-200: #CCD2D1;
+      --br-color-neutrals-300: #B2BCBB;
+      --br-color-neutrals-600: #667271;
+      --br-color-neutrals-700: #4C5655;
+      --br-color-neutrals-800: #333938;
+
+      /* Text Colors (Dark Theme Default) */
+      --br-text-color-heading: #E5E9E8;
+      --br-text-color-paragraph: #CCD2D1;
+      --br-text-color-caption: #B2BCBB;
+      --br-text-color-link: #44CAB6;
+      --br-text-color-link-hover: #69D5C5;
+    }
+
+    /* Light Theme */
+    [data-theme="light"] {
+      --br-text-color-heading: #191D1C;
+      --br-text-color-paragraph: #333938;
+      --br-text-color-caption: #667271;
+      --br-text-color-link: #44CAB6;
+      --br-text-color-link-hover: #36A292;
+    }
+
+    /* ==========================================================================
+       Page Styles
+       ========================================================================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--br-font-family-primary);
+      line-height: 1.5;
+      background-color: var(--br-color-base-black);
+      color: var(--br-color-base-white);
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    [data-theme="light"] body {
+      background-color: var(--br-color-base-white);
+      color: var(--br-color-base-black);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--br-color-neutrals-700);
+    }
+
+    [data-theme="light"] .header {
+      border-bottom-color: var(--br-color-neutrals-200);
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--br-color-primary-default);
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .theme-toggle label {
+      font-size: 14px;
+      color: var(--br-color-neutrals-300);
+    }
+
+    [data-theme="light"] .theme-toggle label {
+      color: var(--br-color-neutrals-600);
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 56px;
+      height: 28px;
+      background: var(--br-color-neutrals-700);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    [data-theme="light"] .toggle-switch {
+      background: var(--br-color-neutrals-300);
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      background: var(--br-color-primary-default);
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    [data-theme="light"] .toggle-switch::after {
+      transform: translateX(28px);
+    }
+
+    .section {
+      margin-bottom: 64px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 32px;
+      color: var(--br-color-primary-default);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 24px;
+      align-items: baseline;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--br-color-neutrals-800);
+    }
+
+    [data-theme="light"] .type-row {
+      border-bottom-color: var(--br-color-neutrals-100);
+    }
+
+    .type-row:last-child {
+      border-bottom: none;
+    }
+
+    .type-meta {
+      font-size: 12px;
+      color: var(--br-color-neutrals-300);
+    }
+
+    [data-theme="light"] .type-meta {
+      color: var(--br-color-neutrals-600);
+    }
+
+    .type-meta .name {
+      font-weight: 700;
+      color: var(--br-text-color-paragraph);
+      margin-bottom: 4px;
+    }
+
+    .type-meta .specs {
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       Typography Classes
+       ========================================================================== */
+
+    .br-heading-display {
+      font-family: var(--br-font-family-display);
+      font-size: var(--br-font-size-display);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-display);
+      color: var(--br-text-color-heading);
+    }
+
+    .br-h1 {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-h1);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-h1);
+      color: var(--br-text-color-heading);
+    }
+
+    .br-h2 {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-h2);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-h2);
+      color: var(--br-text-color-heading);
+    }
+
+    .br-h3 {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-h3);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-h3);
+      color: var(--br-text-color-heading);
+    }
+
+    .br-h4 {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-h4);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-h4);
+      color: var(--br-text-color-heading);
+    }
+
+    .br-paragraph-bold-lg {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-lg);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-lg);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-paragraph-bold-md {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-md);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-md);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-paragraph-sm {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-sm);
+      font-weight: var(--br-font-weight-regular);
+      line-height: var(--br-line-height-paragraph-sm);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-caption {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-caption);
+      font-weight: var(--br-font-weight-regular);
+      line-height: var(--br-line-height-caption);
+      color: var(--br-text-color-caption);
+    }
+
+    .br-paragraph-lg {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-lg);
+      font-weight: var(--br-font-weight-regular);
+      line-height: var(--br-line-height-paragraph-lg);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-paragraph-md {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-md);
+      font-weight: var(--br-font-weight-regular);
+      line-height: var(--br-line-height-paragraph-md);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-link-lg {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-lg);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-lg);
+      color: var(--br-text-color-link);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .br-link-md {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-md);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-md);
+      color: var(--br-text-color-link);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .br-link-sm {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-paragraph-sm);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-sm);
+      color: var(--br-text-color-link);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .br-link-caption {
+      font-family: var(--br-font-family-primary);
+      font-size: var(--br-font-size-caption);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-caption);
+      color: var(--br-text-color-link);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .br-mono-bold-lg {
+      font-family: var(--br-font-family-mono);
+      font-size: var(--br-font-size-paragraph-lg);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-lg);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-mono-bold-md {
+      font-family: var(--br-font-family-mono);
+      font-size: var(--br-font-size-paragraph-md);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-md);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-mono-bold-sm {
+      font-family: var(--br-font-family-mono);
+      font-size: var(--br-font-size-paragraph-sm);
+      font-weight: var(--br-font-weight-bold);
+      line-height: var(--br-line-height-paragraph-sm);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-mono-lg {
+      font-family: var(--br-font-family-mono);
+      font-size: var(--br-font-size-paragraph-lg);
+      font-weight: var(--br-font-weight-regular);
+      line-height: var(--br-line-height-paragraph-lg);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-mono-md {
+      font-family: var(--br-font-family-mono);
+      font-size: var(--br-font-size-paragraph-md);
+      font-weight: var(--br-font-weight-regular);
+      line-height: var(--br-line-height-paragraph-md);
+      color: var(--br-text-color-paragraph);
+    }
+
+    .br-mono-sm {
+      font-family: var(--br-font-family-mono);
+      font-size: var(--br-font-size-paragraph-sm);
+      font-weight: var(--br-font-weight-regular);
+      line-height: var(--br-line-height-paragraph-sm);
+      color: var(--br-text-color-paragraph);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>📝 Typography Scale</h1>
+      <div class="theme-toggle">
+        <label>Dark</label>
+        <div class="toggle-switch" id="themeToggle" role="button" tabindex="0" aria-label="Toggle theme"></div>
+        <label>Light</label>
+      </div>
+    </header>
+
+    <main>
+      <!-- Headings -->
+      <section class="section">
+        <h2 class="section-title">Headings</h2>
+        
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Display H1</div>
+            <div class="specs">
+              Clash Grotesk Bold<br>
+              56px / 96px
+            </div>
+          </div>
+          <div class="br-heading-display">Display H1</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Heading One</div>
+            <div class="specs">
+              Instrument Sans Bold<br>
+              40px / 48px
+            </div>
+          </div>
+          <div class="br-h1">Heading One</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Heading Two</div>
+            <div class="specs">
+              Instrument Sans Bold<br>
+              32px / 40px
+            </div>
+          </div>
+          <div class="br-h2">Heading Two</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Heading Three</div>
+            <div class="specs">
+              Instrument Sans Bold<br>
+              24px / 36px
+            </div>
+          </div>
+          <div class="br-h3">Heading Three</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Heading Four</div>
+            <div class="specs">
+              Instrument Sans Bold<br>
+              20px / 32px
+            </div>
+          </div>
+          <div class="br-h4">Heading Four</div>
+        </div>
+      </section>
+
+      <!-- Paragraph -->
+      <section class="section">
+        <h2 class="section-title">Paragraph</h2>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Paragraph / Bold / Large</div>
+            <div class="specs">
+              Instrument Sans Bold<br>
+              20px / 32px
+            </div>
+          </div>
+          <div class="br-paragraph-bold-lg">Paragraph / Bold / Large</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Paragraph / Bold / Medium</div>
+            <div class="specs">
+              Instrument Sans Bold<br>
+              16px / 24px
+            </div>
+          </div>
+          <div class="br-paragraph-bold-md">Paragraph / Bold / Medium</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Paragraph / Small / Regular</div>
+            <div class="specs">
+              Instrument Sans Regular<br>
+              14px / 22px
+            </div>
+          </div>
+          <div class="br-paragraph-sm">Paragraph / Small / Regular</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Caption</div>
+            <div class="specs">
+              Instrument Sans Regular<br>
+              12px / 16px
+            </div>
+          </div>
+          <div class="br-caption">Caption</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Paragraph / Regular / Large</div>
+            <div class="specs">
+              Instrument Sans Regular<br>
+              20px / 32px
+            </div>
+          </div>
+          <div class="br-paragraph-lg">Paragraph / Regular / Large</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Paragraph / Regular / Medium</div>
+            <div class="specs">
+              Instrument Sans Regular<br>
+              16px / 24px
+            </div>
+          </div>
+          <div class="br-paragraph-md">Paragraph / Regular / Medium</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Paragraph / Regular / Small</div>
+            <div class="specs">
+              Instrument Sans Regular<br>
+              14px / 22px
+            </div>
+          </div>
+          <div class="br-paragraph-sm">Paragraph / Regular / Small</div>
+        </div>
+      </section>
+
+      <!-- Links -->
+      <section class="section">
+        <h2 class="section-title">Links</h2>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Paragraph / Link / Large</div>
+            <div class="specs">
+              Instrument Sans Bold<br>
+              20px / 32px<br>
+              Underline
+            </div>
+          </div>
+          <div class="br-link-lg">Paragraph / Link / Large</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Paragraph / Link / Medium</div>
+            <div class="specs">
+              Instrument Sans Bold<br>
+              16px / 24px<br>
+              Underline
+            </div>
+          </div>
+          <div class="br-link-md">Paragraph / Link / Medium</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Paragraph / Link / Small</div>
+            <div class="specs">
+              Instrument Sans Bold<br>
+              14px / 22px<br>
+              Underline
+            </div>
+          </div>
+          <div class="br-link-sm">Paragraph / Link / Small</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Paragraph / Link / Caption</div>
+            <div class="specs">
+              Instrument Sans Bold<br>
+              12px / 16px<br>
+              Underline
+            </div>
+          </div>
+          <div class="br-link-caption">Paragraph / Link / Caption</div>
+        </div>
+      </section>
+
+      <!-- Mono -->
+      <section class="section">
+        <h2 class="section-title">Mono</h2>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Mono / Bold / Large</div>
+            <div class="specs">
+              IBM Plex Mono Bold<br>
+              20px / 32px
+            </div>
+          </div>
+          <div class="br-mono-bold-lg">Mono / Bold / Large</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Mono / Bold / Medium</div>
+            <div class="specs">
+              IBM Plex Mono Bold<br>
+              16px / 24px
+            </div>
+          </div>
+          <div class="br-mono-bold-md">Mono / Bold / Medium</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Mono / Bold / Small</div>
+            <div class="specs">
+              IBM Plex Mono Bold<br>
+              14px / 22px
+            </div>
+          </div>
+          <div class="br-mono-bold-sm">Mono / Bold / Small</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Mono / Regular / Large</div>
+            <div class="specs">
+              IBM Plex Mono Regular<br>
+              20px / 32px
+            </div>
+          </div>
+          <div class="br-mono-lg">Mono / Regular / Large</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Mono / Regular / Medium</div>
+            <div class="specs">
+              IBM Plex Mono Regular<br>
+              16px / 24px
+            </div>
+          </div>
+          <div class="br-mono-md">Mono / Regular / Medium</div>
+        </div>
+
+        <div class="type-row">
+          <div class="type-meta">
+            <div class="name">Mono / Regular / Small</div>
+            <div class="specs">
+              IBM Plex Mono Regular<br>
+              14px / 22px
+            </div>
+          </div>
+          <div class="br-mono-sm">Mono / Regular / Small</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+    });
+    
+    themeToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        themeToggle.click();
+      }
+    });
+  </script>
+</body>
+</html>

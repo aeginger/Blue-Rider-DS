@@ -1,0 +1,439 @@
+/**
+ * Blue Rider Design System - Button Component
+ * Uses design tokens from design-system.tokens.json
+ */
+
+/* ==========================================================================
+   CSS Custom Properties (Design Tokens)
+   ========================================================================== */
+
+:root {
+  /* Primitives - Base */
+  --br-color-base-white: #FFFFFF;
+  --br-color-base-black: #191D1C;
+
+  /* Primitives - Primary */
+  --br-color-primary-100: #DAF4F0;
+  --br-color-primary-200: #B4EAE2;
+  --br-color-primary-400: #69D5C5;
+  --br-color-primary-default: #44CAB6;
+  --br-color-primary-600: #36A292;
+  --br-color-primary-700: #29796D;
+  --br-color-primary-800: #1B5149;
+  --br-color-primary-900: #0E2824;
+
+  /* Primitives - Neutrals */
+  --br-color-neutrals-100: #E5E9E8;
+  --br-color-neutrals-200: #CCD2D1;
+  --br-color-neutrals-300: #B2BCBB;
+  --br-color-neutrals-400: #99A5A4;
+  --br-color-neutrals-default: #7F8F8D;
+  --br-color-neutrals-600: #667271;
+  --br-color-neutrals-700: #4C5655;
+  --br-color-neutrals-800: #333938;
+
+  /* Scale */
+  --br-scale-100: 4px;
+  --br-scale-200: 8px;
+  --br-scale-300: 12px;
+  --br-scale-400: 16px;
+  --br-scale-500: 20px;
+
+  /* Radius */
+  --br-radius-sm: 4px;
+  --br-radius-med: 8px;
+  --br-radius-round: 48px;
+
+  /* Widths */
+  --br-width-sm: 1px;
+  --br-width-med: 2px;
+
+  /* Typography */
+  --br-font-family-primary: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --br-font-weight-medium: 500;
+  --br-font-weight-bold: 700;
+
+  /* Transitions */
+  --br-transition-fast: 150ms ease-in-out;
+  --br-transition-normal: 200ms ease-in-out;
+
+  /* Semantic - Text on Action (Dark Theme Default) */
+  --br-text-on-action-primary: var(--br-color-base-black);
+  --br-text-on-action-primary-hover: var(--br-color-base-black);
+  --br-text-on-action-primary-pressed: var(--br-color-base-black);
+}
+
+/* ==========================================================================
+   Base Button Styles
+   ========================================================================== */
+
+.br-button {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--br-scale-200);
+
+  /* Sizing */
+  padding: var(--br-scale-200) var(--br-scale-400);
+  min-height: 40px;
+
+  /* Typography */
+  font-family: var(--br-font-family-primary);
+  font-size: 14px;
+  font-weight: var(--br-font-weight-medium);
+  line-height: 1.4;
+  text-decoration: none;
+
+  /* Appearance */
+  border: var(--br-width-sm) solid transparent;
+  border-radius: var(--br-radius-med);
+  cursor: pointer;
+  outline: none;
+
+  /* For grain overlay */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  /* Transitions */
+  transition:
+    background-color var(--br-transition-fast),
+    border-color var(--br-transition-fast),
+    color var(--br-transition-fast),
+    box-shadow var(--br-transition-fast),
+    transform var(--br-transition-fast);
+
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Grain overlay for hover states */
+.br-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='2' intercept='-0.5'/%3E%3CfeFuncG type='linear' slope='2' intercept='-0.5'/%3E%3CfeFuncB type='linear' slope='2' intercept='-0.5'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+  opacity: 0;
+  mix-blend-mode: overlay;
+  transition: opacity var(--br-transition-fast);
+}
+
+.br-button:hover:not(:disabled)::after,
+.br-button.is-hover::after {
+  opacity: 0.4;
+}
+
+.br-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   Icon-Only Button
+   ========================================================================== */
+
+.br-button--icon-only {
+  padding: var(--br-scale-200);
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+}
+
+/* ==========================================================================
+   Button Icons
+   ========================================================================== */
+
+.br-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.br-button__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.br-button__label {
+  white-space: nowrap;
+  color: inherit;
+}
+
+/* Ensure all text inside buttons inherits the button's color */
+.br-button span,
+.br-button__label {
+  color: inherit;
+}
+
+/* ==========================================================================
+   Loading Spinner
+   ========================================================================== */
+
+.br-button__spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.br-button__spinner-icon {
+  width: 20px;
+  height: 20px;
+  animation: br-spin 1s linear infinite;
+}
+
+@keyframes br-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   PRIMARY VARIANT
+   ========================================================================== */
+
+/* --- Dark Theme (Default) --- */
+.br-button--primary {
+  background-color: var(--br-color-primary-default);
+  border-color: var(--br-color-primary-default);
+  color: var(--br-text-on-action-primary);
+}
+
+.br-button--primary:hover:not(:disabled) {
+  background-color: var(--br-color-primary-400);
+  border-color: var(--br-color-primary-400);
+}
+
+.br-button--primary:active:not(:disabled) {
+  background-color: var(--br-color-primary-600);
+  border-color: var(--br-color-primary-600);
+}
+
+.br-button--primary:focus-visible {
+  background-color: var(--br-color-primary-default);
+  border-color: var(--br-color-primary-default);
+  box-shadow:
+    0 0 0 2px var(--br-color-base-black),
+    0 0 0 4px var(--br-color-primary-default);
+}
+
+.br-button--primary:disabled {
+  background-color: var(--br-color-neutrals-800);
+  border-color: var(--br-color-neutrals-800);
+  color: var(--br-color-neutrals-400);
+  cursor: not-allowed;
+}
+
+/* --- Light Theme --- */
+[data-theme="light"] .br-button--primary,
+.br-theme-light .br-button--primary {
+  background-color: var(--br-color-primary-default);
+  border-color: var(--br-color-primary-default);
+  color: var(--br-text-on-action-primary);
+}
+
+[data-theme="light"] .br-button--primary:hover:not(:disabled),
+.br-theme-light .br-button--primary:hover:not(:disabled) {
+  background-color: var(--br-color-primary-400);
+  border-color: var(--br-color-primary-400);
+}
+
+[data-theme="light"] .br-button--primary:active:not(:disabled),
+.br-theme-light .br-button--primary:active:not(:disabled) {
+  background-color: var(--br-color-primary-600);
+  border-color: var(--br-color-primary-600);
+}
+
+[data-theme="light"] .br-button--primary:focus-visible,
+.br-theme-light .br-button--primary:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--br-color-base-white),
+    0 0 0 4px var(--br-color-primary-default);
+}
+
+[data-theme="light"] .br-button--primary:disabled,
+.br-theme-light .br-button--primary:disabled {
+  background-color: var(--br-color-neutrals-100);
+  border-color: var(--br-color-neutrals-100);
+  color: var(--br-color-neutrals-400);
+}
+
+/* ==========================================================================
+   SECONDARY VARIANT
+   ========================================================================== */
+
+/* --- Dark Theme (Default) --- */
+.br-button--secondary {
+  background-color: var(--br-color-primary-900);
+  border-color: var(--br-color-primary-900);
+  color: var(--br-color-primary-100);
+}
+
+.br-button--secondary:hover:not(:disabled) {
+  background-color: var(--br-color-primary-900);
+  border-color: var(--br-color-primary-800);
+}
+
+.br-button--secondary:active:not(:disabled) {
+  background-color: var(--br-color-primary-900);
+  border-color: var(--br-color-primary-800);
+  color: var(--br-color-primary-200);
+}
+
+.br-button--secondary:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--br-color-base-black),
+    0 0 0 4px var(--br-color-primary-default);
+}
+
+.br-button--secondary:disabled {
+  background-color: var(--br-color-neutrals-800);
+  border-color: var(--br-color-neutrals-800);
+  color: var(--br-color-neutrals-400);
+  cursor: not-allowed;
+}
+
+/* --- Light Theme --- */
+[data-theme="light"] .br-button--secondary,
+.br-theme-light .br-button--secondary {
+  background-color: var(--br-color-primary-900);
+  border-color: var(--br-color-primary-900);
+  color: var(--br-color-primary-100);
+}
+
+[data-theme="light"] .br-button--secondary:hover:not(:disabled),
+.br-theme-light .br-button--secondary:hover:not(:disabled) {
+  background-color: var(--br-color-primary-900);
+  border-color: var(--br-color-primary-800);
+}
+
+[data-theme="light"] .br-button--secondary:active:not(:disabled),
+.br-theme-light .br-button--secondary:active:not(:disabled) {
+  background-color: var(--br-color-primary-900);
+  border-color: var(--br-color-primary-800);
+  color: var(--br-color-primary-200);
+}
+
+[data-theme="light"] .br-button--secondary:focus-visible,
+.br-theme-light .br-button--secondary:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--br-color-base-white),
+    0 0 0 4px var(--br-color-primary-default);
+}
+
+[data-theme="light"] .br-button--secondary:disabled,
+.br-theme-light .br-button--secondary:disabled {
+  background-color: var(--br-color-neutrals-100);
+  border-color: var(--br-color-neutrals-100);
+  color: var(--br-color-neutrals-400);
+}
+
+/* ==========================================================================
+   FLAT VARIANT
+   ========================================================================== */
+
+/* --- Dark Theme (Default) --- */
+.br-button--flat {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--br-color-primary-100);
+}
+
+.br-button--flat:hover:not(:disabled) {
+  background-color: transparent;
+  border-color: var(--br-color-primary-800);
+  color: var(--br-color-primary-100);
+}
+
+.br-button--flat:active:not(:disabled) {
+  background-color: transparent;
+  border-color: var(--br-color-primary-800);
+  color: var(--br-color-primary-200);
+}
+
+.br-button--flat:focus-visible {
+  background-color: transparent;
+  border-color: var(--br-color-primary-default);
+  box-shadow:
+    0 0 0 2px var(--br-color-base-black),
+    0 0 0 4px var(--br-color-primary-default);
+}
+
+.br-button--flat:disabled {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--br-color-neutrals-default);
+  cursor: not-allowed;
+}
+
+/* --- Light Theme --- */
+[data-theme="light"] .br-button--flat,
+.br-theme-light .br-button--flat {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--br-color-primary-900);
+}
+
+[data-theme="light"] .br-button--flat:hover:not(:disabled),
+.br-theme-light .br-button--flat:hover:not(:disabled) {
+  background-color: transparent;
+  border-color: var(--br-color-primary-800);
+  color: var(--br-color-primary-900);
+}
+
+[data-theme="light"] .br-button--flat:active:not(:disabled),
+.br-theme-light .br-button--flat:active:not(:disabled) {
+  background-color: transparent;
+  border-color: var(--br-color-primary-800);
+  color: var(--br-color-primary-800);
+}
+
+[data-theme="light"] .br-button--flat:focus-visible,
+.br-theme-light .br-button--flat:focus-visible {
+  box-shadow:
+    0 0 0 2px var(--br-color-base-white),
+    0 0 0 4px var(--br-color-primary-default);
+}
+
+[data-theme="light"] .br-button--flat:disabled,
+.br-theme-light .br-button--flat:disabled {
+  color: var(--br-color-neutrals-default);
+}
+
+/* ==========================================================================
+   High Contrast / Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .br-button {
+    transition: none;
+  }
+
+  .br-button__spinner-icon {
+    animation: none;
+  }
+
+  .br-button:active:not(:disabled) {
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .br-button {
+    border: 2px solid currentColor;
+  }
+
+  .br-button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
