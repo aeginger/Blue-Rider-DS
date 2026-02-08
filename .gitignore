@@ -1,8 +1,35 @@
-# Cursor MCP configuration (contains API tokens)
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# IDE and editor
 .cursor/
+.vscode/
+.idea/
+*.swp
+*.swo
 
 # OS files
 .DS_Store
+Thumbs.db
 
+# Environment variables
+.env
+.env.local
+.env.*.local
 
+# Logs
+*.log
+npm-debug.log*
+firebase-debug.log
 
+# Cache
+.cache/
+.eslintcache
+
+# Test coverage
+coverage/
