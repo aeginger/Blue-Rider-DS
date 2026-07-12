@@ -2,12 +2,13 @@ import React, { forwardRef, ButtonHTMLAttributes } from 'react';
 import './Button.css';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'flat';
-export type ButtonSize = 'default' | 'icon';
+/** Matches the Figma Button component sizes: LG (48px) and SM (32px). */
+export type ButtonSize = 'lg' | 'sm';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  /** The visual style variant of the button */
+  /** The visual style variant of the button (matches Figma variant names) */
   variant?: ButtonVariant;
-  /** Whether this is an icon-only button */
+  /** Button size: 'lg' (48px, default) or 'sm' (32px) — matches Figma */
   size?: ButtonSize;
   /** Icon to display before the label */
   iconLeft?: React.ReactNode;
@@ -15,19 +16,23 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconRight?: React.ReactNode;
   /** Whether the button is in a loading state */
   isLoading?: boolean;
-  /** The content of the button */
+  /** The content of the button. Omit (with an icon) for an icon-only button —
+   * remember to pass aria-label. */
   children?: React.ReactNode;
 }
 
 /**
- * Button component following the Blue Rider Design System
- * Supports Primary, Secondary, and Flat variants with full state management
+ * Button — Blue Rider Design System reference component.
+ *
+ * Styling comes exclusively from semantic design tokens
+ * (src/tokens/dist/tokens.css must be loaded). Dark theme is the default;
+ * light mode is automatic under [data-theme="light"].
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       variant = 'primary',
-      size = 'default',
+      size = 'lg',
       iconLeft,
       iconRight,
       isLoading = false,
@@ -38,11 +43,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const isIconOnly = size === 'icon' || (!children && (iconLeft || iconRight));
+    const isIconOnly = !children && Boolean(iconLeft || iconRight);
 
     const buttonClasses = [
       'br-button',
       `br-button--${variant}`,
+      `br-button--${size}`,
       isIconOnly ? 'br-button--icon-only' : '',
       isLoading ? 'br-button--loading' : '',
       className,

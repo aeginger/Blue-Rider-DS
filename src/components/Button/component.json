@@ -1,0 +1,68 @@
+{
+  "name": "Button",
+  "description": "Primary interactive control. Pill-shaped, dark-first, uses semantic design tokens only. Matches the Figma Button component set (Buttons page, node 1005:681).",
+  "figma": {
+    "fileKey": "gC6FXvx1JSBuav9ywQIAej",
+    "page": "Buttons",
+    "nodeId": "1005:681"
+  },
+  "import": "import { Button } from './src/components';",
+  "props": {
+    "variant": {
+      "type": "'primary' | 'secondary' | 'flat'",
+      "default": "primary",
+      "description": "Visual style. Matches Figma variant names. Figma also defines 'destructive' and 'outline' — not yet implemented in code (requires Error-Bold semantic tokens from a fresh Figma export)."
+    },
+    "size": {
+      "type": "'lg' | 'sm'",
+      "default": "lg",
+      "description": "lg = 48px height, sm = 32px height. Matches Figma sizes exactly."
+    },
+    "iconLeft": { "type": "ReactNode", "description": "Icon before the label. Use the Icon component." },
+    "iconRight": { "type": "ReactNode", "description": "Icon after the label." },
+    "isLoading": { "type": "boolean", "default": false, "description": "Shows spinner, disables interaction." },
+    "children": { "type": "ReactNode", "description": "Label. Omit with an icon prop for an icon-only button; then aria-label is REQUIRED." }
+  },
+  "tokensConsumed": [
+    "--br-color-bg-action-primary(-hover|-pressed)",
+    "--br-color-text-on-action-primary",
+    "--br-color-bg-action-secondary(-hover|-pressed)",
+    "--br-color-stroke-action-secondary(-hover|-pressed)",
+    "--br-color-text-on-action-secondary(-pressed)",
+    "--br-color-bg-action-flat(-hover|-pressed)",
+    "--br-color-stroke-action-flat(-hover|-pressed)",
+    "--br-color-text-on-action-flat(-hover|-pressed)",
+    "--br-color-bg-disabled",
+    "--br-color-text-on-disabled",
+    "--br-color-text-disabled",
+    "--br-color-bg-page",
+    "--br-color-stroke-focus",
+    "--br-space-xs",
+    "--br-space-sm",
+    "--br-space-lg",
+    "--br-radius-round",
+    "--br-border-width-sm",
+    "--br-font-family-sans",
+    "--br-font-size-sm",
+    "--br-font-size-caption",
+    "--br-font-weight-medium",
+    "--br-font-line-height-normal",
+    "--br-duration-fast",
+    "--br-easing-default"
+  ],
+  "composition": {
+    "usedBy": ["forms", "modals", "toolbars", "cards"],
+    "uses": ["Icon (optional)"],
+    "rules": [
+      "Requires src/tokens/dist/tokens.css to be loaded app-wide.",
+      "Never override colors with raw values; extend via semantic tokens.",
+      "Text on the teal primary button is DARK, not white.",
+      "Theme is inherited from the nearest [data-theme] ancestor — never set per-button."
+    ]
+  },
+  "a11y": [
+    "Icon-only buttons must have aria-label.",
+    "Focus ring uses :focus-visible (keyboard only).",
+    "Respects prefers-reduced-motion and forced-colors."
+  ]
+}
