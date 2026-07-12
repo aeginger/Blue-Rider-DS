@@ -1,14 +1,21 @@
 /**
  * Blue Rider Design System — Button
  *
- * Consumes SEMANTIC tokens only (see src/tokens/dist/tokens.css — import it
- * once app-wide). No theme-specific rules live here: dark is the default and
- * [data-theme="light"] re-maps the variables automatically.
+ * Spec source: Figma Buttons page (node 1005:681), verified via MCP
+ * design context on the component set:
+ *   LG: 48px, padding 12/24, gap 12, radius 12 (Scale/300), 16px Semibold, 24px icons
+ *   SM: 32px, padding 4/12, gap 12, radius 8 (Scale/200), 14px Semibold, 16px icons
+ *
+ * Consumes SEMANTIC tokens only (src/tokens/dist/tokens.css — import once
+ * app-wide). No theme-specific rules: dark is default, [data-theme="light"]
+ * re-maps the variables automatically.
  */
 
 .br-button {
-  /* Component tokens — heights match the Figma Button component (LG/SM).
-     48/32 are component dimensions, not spacing-scale values. */
+  /* Component tokens. Figma binds cornerRadius to Scale/300 (12px) for LG
+     and Scale/200 (8px) for SM — mirrored here via the space scale. */
+  --button-radius-lg: var(--br-space-sm);
+  --button-radius-sm: var(--br-space-xs);
   --button-height-lg: 48px;
   --button-height-sm: 32px;
 
@@ -16,17 +23,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--br-space-xs);
+  gap: var(--br-space-sm);
 
-  /* Typography */
+  /* Typography — Paragraph/Bold (Instrument Sans Semibold) per Figma */
   font-family: var(--br-font-family-sans);
-  font-weight: var(--br-font-weight-medium);
-  line-height: var(--br-font-line-height-normal);
+  font-weight: var(--br-font-weight-semibold);
   text-decoration: none;
 
-  /* Appearance — pill shape per Figma */
+  /* Appearance */
   border: var(--br-border-width-sm) solid transparent;
-  border-radius: var(--br-radius-round);
   cursor: pointer;
   outline: none;
 
@@ -48,19 +53,23 @@
 }
 
 /* ==========================================================================
-   Sizes (match Figma variants: LG 48px, SM 32px)
+   Sizes — LG (48px) and SM (32px), matching Figma exactly
    ========================================================================== */
 
 .br-button--lg {
   min-height: var(--button-height-lg);
-  padding: 0 var(--br-space-lg);
-  font-size: var(--br-font-size-sm);
+  padding: var(--br-space-sm) var(--br-space-lg);
+  border-radius: var(--button-radius-lg);
+  font-size: var(--br-font-size-med);
+  line-height: 24px; /* Figma Line Height/Paragraph/MED */
 }
 
 .br-button--sm {
   min-height: var(--button-height-sm);
-  padding: 0 var(--br-space-sm);
-  font-size: var(--br-font-size-caption);
+  padding: var(--br-space-xxs) var(--br-space-sm);
+  border-radius: var(--button-radius-sm);
+  font-size: var(--br-font-size-sm);
+  line-height: 22px; /* Figma Line Height/Paragraph/SM */
 }
 
 .br-button--icon-only.br-button--lg {
@@ -103,15 +112,15 @@
 }
 
 /* ==========================================================================
-   Icons, label, spinner
+   Icons, label, spinner — 24px on LG, 16px on SM (per Figma)
    ========================================================================== */
 
 .br-button__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
 }
 
@@ -138,9 +147,14 @@
 }
 
 .br-button__spinner-icon {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   animation: br-spin 1s linear infinite;
+}
+
+.br-button--sm .br-button__spinner-icon {
+  width: 16px;
+  height: 16px;
 }
 
 @keyframes br-spin {
@@ -154,14 +168,14 @@
 
 .br-button--primary {
   background-color: var(--br-color-bg-action-primary);
-  border-color: var(--br-color-bg-action-primary);
+  border-color: var(--br-color-stroke-action-primary);
   color: var(--br-color-text-on-action-primary);
 }
 
 .br-button--primary:hover:not(:disabled),
 .br-button--primary.force-hover {
   background-color: var(--br-color-bg-action-primary-hover);
-  border-color: var(--br-color-bg-action-primary-hover);
+  border-color: var(--br-color-stroke-action-primary-hover);
 }
 
 .br-button--primary:active:not(:disabled),
@@ -230,7 +244,7 @@
 
 .br-button:disabled {
   background-color: var(--br-color-bg-disabled);
-  border-color: var(--br-color-bg-disabled);
+  border-color: var(--br-color-stroke-disabled);
   color: var(--br-color-text-on-disabled);
   cursor: not-allowed;
 }
