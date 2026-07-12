@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
+    "build:tokens": "node src/tokens/build.mjs",
     "lint": "eslint src/",
     "typecheck": "tsc --noEmit"
   },
