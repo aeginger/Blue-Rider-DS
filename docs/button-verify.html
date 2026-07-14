@@ -545,6 +545,39 @@ body { margin: 0; }
 }
 
 /* ==========================================================================
+   OUTLINE (Figma: transparent fill, flat stroke/text tokens)
+   Design decision (2026-07): stroke color stays CONSTANT across hover and
+   pressed (deviates from the Figma component, which moves stroke to
+   stroke-action-flat-hover). Feedback comes from the subtle flat fill.
+   ========================================================================== */
+
+.br-button--outline {
+  background-color: transparent;
+  border-color: var(--br-color-stroke-action-flat);
+  color: var(--br-color-text-on-action-flat);
+}
+
+.br-button--outline:hover:not(:disabled),
+.br-button--outline.force-hover {
+  background-color: var(--br-color-bg-action-flat-hover);
+  border-color: var(--br-color-stroke-action-flat);
+  color: var(--br-color-text-on-action-flat-hover);
+}
+
+.br-button--outline:active:not(:disabled),
+.br-button--outline.force-active {
+  background-color: var(--br-color-bg-action-flat-pressed);
+  border-color: var(--br-color-stroke-action-flat);
+  color: var(--br-color-text-on-action-flat-pressed);
+}
+
+.br-button--outline:disabled {
+  background-color: transparent;
+  border-color: var(--br-color-stroke-disabled);
+  color: var(--br-color-text-disabled);
+}
+
+/* ==========================================================================
    Focus + disabled (all variants)
    ========================================================================== */
 
@@ -645,6 +678,21 @@ body { margin: 0; }
     <button class="br-button br-button--secondary br-button--sm force-focus"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
     <button class="br-button br-button--secondary br-button--sm" disabled><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
   </div>
+  <div style="margin-bottom: 8px; font-family: var(--br-font-family-sans); color: var(--br-color-text-caption); font-size: 12px;">outline</div>
+  <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px; flex-wrap: wrap;">
+    <button class="br-button br-button--outline br-button--lg"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--lg force-hover"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--lg force-active"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--lg force-focus"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--lg" disabled><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+  </div>
+  <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 28px; flex-wrap: wrap;">
+    <button class="br-button br-button--outline br-button--sm"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--sm force-hover"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--sm force-active"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--sm force-focus"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--sm" disabled><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+  </div>
   <div style="margin-bottom: 8px; font-family: var(--br-font-family-sans); color: var(--br-color-text-caption); font-size: 12px;">flat</div>
   <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px; flex-wrap: wrap;">
     <button class="br-button br-button--flat br-button--lg"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
@@ -709,6 +757,21 @@ body { margin: 0; }
     <button class="br-button br-button--secondary br-button--sm force-active"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
     <button class="br-button br-button--secondary br-button--sm force-focus"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
     <button class="br-button br-button--secondary br-button--sm" disabled><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+  </div>
+  <div style="margin-bottom: 8px; font-family: var(--br-font-family-sans); color: var(--br-color-text-caption); font-size: 12px;">outline</div>
+  <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px; flex-wrap: wrap;">
+    <button class="br-button br-button--outline br-button--lg"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--lg force-hover"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--lg force-active"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--lg force-focus"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--lg" disabled><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+  </div>
+  <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 28px; flex-wrap: wrap;">
+    <button class="br-button br-button--outline br-button--sm"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--sm force-hover"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--sm force-active"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--sm force-focus"><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
+    <button class="br-button br-button--outline br-button--sm" disabled><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="br-button__label">Button</span><span class="br-button__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
   </div>
   <div style="margin-bottom: 8px; font-family: var(--br-font-family-sans); color: var(--br-color-text-caption); font-size: 12px;">flat</div>
   <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 20px; flex-wrap: wrap;">
