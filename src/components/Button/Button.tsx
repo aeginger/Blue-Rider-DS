@@ -10,9 +10,14 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   /** Button size: 'lg' (48px, default) or 'sm' (32px) — matches Figma */
   size?: ButtonSize;
-  /** Icon to display before the label */
+  /** Optional leading icon, independent of iconRight. Convention: the
+   * action's SUBJECT (plus = create, check = confirm, x = cancel,
+   * settings, arrow-left = back). Pass <Icon name="..."/> without a size —
+   * Button sizes it (24px LG / 16px SM) and it inherits the text color. */
   iconLeft?: React.ReactNode;
-  /** Icon to display after the label */
+  /** Optional trailing icon, independent of iconLeft. Convention: the
+   * action's DIRECTION (arrow-right = proceed, chevron-right = drill in).
+   * Same sizing/color behavior as iconLeft. */
   iconRight?: React.ReactNode;
   /** Whether the button is in a loading state */
   isLoading?: boolean;

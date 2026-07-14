@@ -18,8 +18,8 @@
       "default": "lg",
       "description": "lg = 48px height, sm = 32px height. Matches Figma sizes exactly."
     },
-    "iconLeft": { "type": "ReactNode", "description": "Icon before the label. Use the Icon component." },
-    "iconRight": { "type": "ReactNode", "description": "Icon after the label." },
+    "iconLeft": { "type": "ReactNode", "description": "OPTIONAL, independent of iconRight. Icon before the label. Use <Icon name=\"...\"/> without a size prop — Button sizes it (24px LG / 16px SM) and it inherits the variant's text color automatically." },
+    "iconRight": { "type": "ReactNode", "description": "OPTIONAL, independent of iconLeft. Icon after the label. Same sizing/color behavior as iconLeft." },
     "isLoading": { "type": "boolean", "default": false, "description": "Shows spinner, disables interaction." },
     "children": { "type": "ReactNode", "description": "Label. Omit with an icon prop for an icon-only button; then aria-label is REQUIRED." }
   },
@@ -54,6 +54,17 @@
     "--br-duration-fast",
     "--br-easing-default"
   ],
+  "iconUsage": {
+    "combinations": "All four are valid: no icons (default), iconLeft only, iconRight only, both. Icons are decorative reinforcement — the label carries the meaning.",
+    "when": [
+      "DEFAULT: no icons. Add one only when it clarifies the action.",
+      "iconLeft = WHAT the action is about: settings, plus (create), check (confirm), x (cancel), arrow-left (back).",
+      "iconRight = WHERE the action leads: arrow-right (proceed/CTA), chevron-right (drill in/next).",
+      "Use BOTH only in wizard/navigation contexts (e.g. settings + chevron-right).",
+      "Icon-only (omit children, keep one icon): compact toolbars and repeated row actions — aria-label is REQUIRED.",
+      "Pick names from src/components/Icon/component.json vocabulary; any icon works in any variant (currentColor)."
+    ]
+  },
   "composition": {
     "usedBy": ["forms", "modals", "toolbars", "cards"],
     "uses": ["Icon (optional)"],
