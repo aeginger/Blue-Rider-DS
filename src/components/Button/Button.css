@@ -254,6 +254,39 @@
 }
 
 /* ==========================================================================
+   OUTLINE (Figma: transparent fill, flat stroke/text tokens)
+   Design decision (2026-07): stroke color stays CONSTANT across hover and
+   pressed (deviates from the Figma component, which moves stroke to
+   stroke-action-flat-hover). Feedback comes from the subtle flat fill.
+   ========================================================================== */
+
+.br-button--outline {
+  background-color: transparent;
+  border-color: var(--br-color-stroke-action-flat);
+  color: var(--br-color-text-on-action-flat);
+}
+
+.br-button--outline:hover:not(:disabled),
+.br-button--outline.force-hover {
+  background-color: var(--br-color-bg-action-flat-hover);
+  border-color: var(--br-color-stroke-action-flat);
+  color: var(--br-color-text-on-action-flat-hover);
+}
+
+.br-button--outline:active:not(:disabled),
+.br-button--outline.force-active {
+  background-color: var(--br-color-bg-action-flat-pressed);
+  border-color: var(--br-color-stroke-action-flat);
+  color: var(--br-color-text-on-action-flat-pressed);
+}
+
+.br-button--outline:disabled {
+  background-color: transparent;
+  border-color: var(--br-color-stroke-disabled);
+  color: var(--br-color-text-disabled);
+}
+
+/* ==========================================================================
    Focus + disabled (all variants)
    ========================================================================== */
 

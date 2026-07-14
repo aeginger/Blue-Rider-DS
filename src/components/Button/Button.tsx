@@ -1,7 +1,7 @@
 import React, { forwardRef, ButtonHTMLAttributes } from 'react';
 import './Button.css';
 
-export type ButtonVariant = 'primary' | 'destructive' | 'secondary' | 'flat';
+export type ButtonVariant = 'primary' | 'destructive' | 'secondary' | 'outline' | 'flat';
 /** Matches the Figma Button component sizes: LG (48px) and SM (32px). */
 export type ButtonSize = 'lg' | 'sm';
 
