@@ -1,0 +1,29 @@
+{
+  "name": "Icon",
+  "description": "SVG icon component. All icons are 24x24 viewBox, stroke-based, and use currentColor — they automatically inherit the text color of their parent (e.g. a Button variant), so any icon works in any context without color props.",
+  "import": "import { Icon } from './src/components';",
+  "props": {
+    "name": {
+      "type": "'settings' | 'chevron-right' | 'chevron-left' | 'plus' | 'check' | 'x' | 'arrow-right' | 'arrow-left'",
+      "required": true,
+      "description": "Which icon to render. See vocabulary below for meaning and placement."
+    },
+    "size": {
+      "type": "number",
+      "default": 20,
+      "description": "Pixel size. OMIT inside Button — Button.css sizes icons itself (24px LG / 16px SM)."
+    }
+  },
+  "vocabulary": {
+    "settings": { "meaning": "configuration, preferences, options", "placement": "left", "example": "Manage settings" },
+    "plus": { "meaning": "create, add, new item", "placement": "left", "example": "Add project" },
+    "check": { "meaning": "confirm, apply, success", "placement": "left", "example": "Confirm selection" },
+    "x": { "meaning": "close, cancel, remove, dismiss", "placement": "left, or icon-only close button", "example": "Cancel" },
+    "arrow-right": { "meaning": "proceed, submit-and-continue, CTA momentum", "placement": "right", "example": "Get started" },
+    "arrow-left": { "meaning": "go back, previous step", "placement": "left", "example": "Back" },
+    "chevron-right": { "meaning": "drill into, next, expand rightward", "placement": "right", "example": "View details" },
+    "chevron-left": { "meaning": "collapse, previous", "placement": "left", "example": "Previous" }
+  },
+  "extending": "Add new icons in Icon.tsx: 24x24 viewBox, fill=none, stroke=currentColor, strokeWidth=2, round caps/joins. Then register the name in IconProps and add a vocabulary entry here.",
+  "a11y": "Icon renders aria-hidden — it is always decorative. Meaning must come from the button label or aria-label."
+}
