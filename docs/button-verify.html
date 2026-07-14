@@ -524,23 +524,25 @@ body { margin: 0; }
    FLAT
    ========================================================================== */
 
+/* Flat has NO stroke in any state — the stroke-action-flat tokens belong to
+   the OUTLINE variant. Border stays transparent to keep geometry stable. */
 .br-button--flat {
   background-color: var(--br-color-bg-action-flat);
-  border-color: var(--br-color-stroke-action-flat);
+  border-color: transparent;
   color: var(--br-color-text-on-action-flat);
 }
 
 .br-button--flat:hover:not(:disabled),
 .br-button--flat.force-hover {
   background-color: var(--br-color-bg-action-flat-hover);
-  border-color: var(--br-color-stroke-action-flat-hover);
+  border-color: transparent;
   color: var(--br-color-text-on-action-flat-hover);
 }
 
 .br-button--flat:active:not(:disabled),
 .br-button--flat.force-active {
   background-color: var(--br-color-bg-action-flat-pressed);
-  border-color: var(--br-color-stroke-action-flat-pressed);
+  border-color: transparent;
   color: var(--br-color-text-on-action-flat-pressed);
 }
 
