@@ -24,6 +24,12 @@ Blue Rider Figma library (`gC6FXvx1JSBuav9ywQIAej`).
    `--br-space-med` (16px).
 8. **Variant and size prop names match Figma variant names exactly**
    (e.g. `variant="primary" | "secondary" | "flat"`).
+9. **Button icons are optional and independent** (`iconLeft` / `iconRight` —
+   none, either, or both). Leading icon = the action's subject (plus, check,
+   x, settings); trailing icon = direction (arrow-right, chevron-right).
+   Default is no icons. Icons inherit color and size automatically — never
+   set them manually. Vocabulary: `src/components/Icon/component.json`.
+   Icon-only buttons (no label) require `aria-label`.
 
 ## Token naming grammar
 
