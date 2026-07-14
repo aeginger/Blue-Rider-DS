@@ -9,9 +9,9 @@
   "import": "import { Button } from './src/components';",
   "props": {
     "variant": {
-      "type": "'primary' | 'secondary' | 'flat'",
+      "type": "'primary' | 'destructive' | 'secondary' | 'flat'",
       "default": "primary",
-      "description": "Visual style. Matches Figma variant names. Figma also defines 'destructive' and 'outline' — not yet implemented in code (requires Error-Bold semantic tokens from a fresh Figma export)."
+      "description": "Visual style. Matches Figma variant names ('destructive' = Figma 'Primary Destructive'). Figma also defines 'outline' — not yet implemented in code."
     },
     "size": {
       "type": "'lg' | 'sm'",
@@ -32,6 +32,9 @@
     "--br-color-bg-action-flat(-hover|-pressed)",
     "--br-color-stroke-action-flat(-hover|-pressed)",
     "--br-color-text-on-action-flat(-hover|-pressed)",
+    "--br-color-bg-action-destructive(-hover|-pressed)",
+    "--br-color-text-on-action-destructive",
+    "--br-color-icon-on-action-destructive",
     "--br-color-bg-disabled",
     "--br-color-text-on-disabled",
     "--br-color-text-disabled",

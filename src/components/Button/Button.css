@@ -185,6 +185,28 @@
 }
 
 /* ==========================================================================
+   DESTRUCTIVE (Figma: "Primary Destructive" — no stroke, Neutrals/50 text)
+   ========================================================================== */
+
+.br-button--destructive {
+  background-color: var(--br-color-bg-action-destructive);
+  border-color: var(--br-color-bg-action-destructive);
+  color: var(--br-color-text-on-action-destructive);
+}
+
+.br-button--destructive:hover:not(:disabled),
+.br-button--destructive.force-hover {
+  background-color: var(--br-color-bg-action-destructive-hover);
+  border-color: var(--br-color-bg-action-destructive-hover);
+}
+
+.br-button--destructive:active:not(:disabled),
+.br-button--destructive.force-active {
+  background-color: var(--br-color-bg-action-destructive-pressed);
+  border-color: var(--br-color-bg-action-destructive-pressed);
+}
+
+/* ==========================================================================
    SECONDARY
    ========================================================================== */
 

@@ -14,7 +14,7 @@ export const ButtonDemo: React.FC = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
-  const variants = ['primary', 'secondary', 'flat'] as const;
+  const variants = ['primary', 'destructive', 'secondary', 'flat'] as const;
   const sizes = ['lg', 'sm'] as const;
   const states = ['Default', 'Hover', 'Pressed', 'Focus', 'Disabled'] as const;
 
